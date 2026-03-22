@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+    <title>Campus Shenanigans — Campus Event Tracker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,700;0,9..144,900;1,9..144,700;1,9..144,900&family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,700;1,9..40,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+    <style>
+        :root{
+          --w:#FFFFFF; --off:#F7F4EE; --ink:#0D0D0D; --ink2:#3A3630; --mid:#8A8580; --ghost:#C4BFB8;
+          --salmon:#F4937A; --teal:#4DC8B4; --gold:#F5C842; --violet:#7B7FE8; --lime:#A8D96C;
+          --navy:#1D2140; --navy-l:#252849; --fire:#FF3D00;
+          --ff:'DM Sans',sans-serif; --ffs:'Fraunces',serif; --ffm:'Space Mono',monospace;
+          --max:1080px; --r:16px;
+        }
+        *{box-sizing:border-box;margin:0;padding:0;}
+        html{scroll-behavior:smooth;}
+        body{background:var(--w);color:var(--ink);font-family:var(--ff);overflow-x:hidden;cursor:none;-webkit-font-smoothing:antialiased;}
+        a{text-decoration:none;color:inherit;}
+        img{max-width:100%;display:block;}
+
+        /* NAV */
+        nav{
+          position:fixed;top:0;left:0;right:0;z-index:800;height:60px;
+          display:flex;align-items:center;justify-content:space-between;
+          padding:0 2.5rem;
+          background:rgba(255,255,255,.96);
+          backdrop-filter:blur(16px);
+          border-bottom:2px solid var(--ink);
+        }
+        .n-logo{font-family:var(--ffs);font-size:1.1rem;font-weight:900;display:flex;align-items:center;gap:.5rem;}
+        .n-pulse{width:10px;height:10px;background:var(--fire);border-radius:50%;animation:navPulse 2s ease-in-out infinite;}
+        @keyframes navPulse{0%,100%{transform:scale(1);}50%{transform:scale(1.7);box-shadow:0 0 0 6px rgba(255,61,0,.15);}}
+        .n-links{display:flex;gap:.08rem;list-style:none;}
+        .n-links a{font-size:.7rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:var(--ink2);padding:.36rem .75rem;border-radius:99px;transition:all .15s;}
+        .n-links a:hover{background:var(--ink);color:#fff;}
+        .n-cta{background:var(--fire)!important;color:#fff!important;}
+        .n-cta:hover{background:var(--ink)!important;}
+
+        /* HERO */
+        .hero{min-height:100vh;padding-top:60px;background:var(--w);display:flex;flex-direction:column;position:relative;overflow:hidden;}
+        .hero-grid{position:absolute;inset:0;pointer-events:none;background-image:radial-gradient(rgba(0,0,0,.065) 1px,transparent 1px);background-size:26px 26px;mask-image:linear-gradient(to bottom,transparent 0%,black 15%,black 85%,transparent 100%);}
+        .hero-body{flex:1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:3rem;padding:3rem 2.5rem 1rem;max-width:var(--max);margin:0 auto;width:100%;position:relative;z-index:2;}
+        .hero-h{font-family:var(--ffs);font-weight:900;font-size:clamp(3.5rem,8vw,6.5rem);line-height:.88;letter-spacing:-.035em;margin-bottom:1.6rem;}
+        .hl1{display:block;color:var(--ink);}
+        .hl2{display:block;font-style:italic;color:var(--fire);position:relative;}
+        .hl2 svg{position:absolute;bottom:-8px;left:0;width:100%;overflow:visible;}
+        .hl2 svg path{stroke:var(--fire);stroke-width:3;fill:none;stroke-linecap:round;stroke-dasharray:700;stroke-dashoffset:700;animation:dashLine 1.4s .9s ease forwards;}
+        @keyframes dashLine{to{stroke-dashoffset:0;}}
+        .hero-desc{font-size:1.05rem;color:var(--ink2);line-height:1.75;max-width:420px;margin-bottom:2rem;}
+        .hero-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-bottom:2rem;}
+        .htag{font-family:var(--ffm);font-size:.62rem;font-weight:700;letter-spacing:.07em;text-transform:uppercase;padding:.28rem .82rem;border-radius:99px;border:2px solid var(--ink);transition:all .15s;cursor:pointer;}
+        .htag:hover{background:var(--ink);color:#fff;}
+        .hero-btns{display:flex;gap:.8rem;}
+        .btn{font-family:var(--ffs);font-size:1rem;font-weight:700;padding:.85rem 2rem;border-radius:99px;border:2.5px solid var(--ink);display:inline-flex;align-items:center;gap:.5rem;transition:transform .15s,box-shadow .15s;cursor:pointer;}
+        .btn:hover{transform:translateY(-3px);}
+        .btn-fill{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--fire);}
+        .btn-fill:hover{box-shadow:6px 6px 0 var(--fire);}
+        .btn-line{background:transparent;color:var(--ink);}
+        .btn-line:hover{background:var(--off);}
+        @keyframes up{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+        .rv{opacity:0;transform:translateY(20px);transition:opacity .6s ease,transform .6s ease;}
+        .rv.in{opacity:1;transform:none;}
+        .d1{transition-delay:.05s;}.d2{transition-delay:.1s;}.d3{transition-delay:.15s;}.d4{transition-delay:.2s;}.d5{transition-delay:.25s;}
+
+         /* PHONE */
+        .hero-right{display:flex;justify-content:center;align-items:center;position:relative;}
+        .phone{width:240px;border-radius:32px;border:3px solid var(--ink);background:#fff;box-shadow:8px 8px 0 var(--ink);overflow:hidden;animation:bob 5s ease-in-out infinite alternate;}
+        @keyframes bob{from{transform:translateY(0) rotate(-.5deg);}to{transform:translateY(-14px) rotate(.5deg);}}
+        .ph-top{background:var(--ink);padding:.5rem .9rem;display:flex;justify-content:space-between;align-items:center;}
+        .ph-name{font-family:var(--ffs);font-size:.75rem;font-weight:700;color:#fff;}
+        .ph-dot{width:7px;height:7px;background:var(--fire);border-radius:50%;}
+        .ph-body{padding:.9rem;}
+        .ph-sec{font-family:var(--ffm);font-size:.52rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mid);margin-bottom:.5rem;}
+        .ph-card{border-radius:10px;border:2px solid var(--ink);padding:.6rem .75rem;margin-bottom:.5rem;box-shadow:2px 2px 0 var(--ink);display:flex;align-items:center;gap:.6rem;}
+        .ph-ico{width:28px;height:28px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0;}
+        .ph-cat{font-family:var(--ffm);font-size:.5rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--mid);}
+        .ph-nm{font-family:var(--ffs);font-size:.72rem;font-weight:700;color:var(--ink);}
+        .ph-meta{font-size:.58rem;color:var(--mid);display:flex;gap:.4rem;align-items:center;margin-top:.1rem;}
+        .ph-badge{font-family:var(--ffm);font-size:.46rem;font-weight:700;padding:.1rem .35rem;border-radius:99px;border:1.5px solid var(--ink);margin-left:auto;}
+        .fl{position:absolute;background:#fff;border:2px solid var(--ink);border-radius:12px;padding:.5rem .75rem;box-shadow:3px 3px 0 var(--ink);display:flex;align-items:center;gap:.5rem;white-space:nowrap;animation:floatIt ease-in-out infinite alternate;}
+        .fl svg{flex-shrink:0;}
+        .fl span{font-family:var(--ffm);font-size:.57rem;font-weight:700;letter-spacing:.05em;color:var(--ink);}
+        .f1{top:-22px;right:-68px;animation-duration:4s;}
+        .f2{bottom:75px;right:-72px;animation-duration:5s;animation-delay:-1.5s;}
+        .f3{bottom:-14px;left:-68px;animation-duration:4.5s;animation-delay:-.8s;}
+        .f4{top:78px;left:-73px;animation-duration:3.8s;animation-delay:-2s;}
+        @keyframes floatIt{from{transform:translateY(0) rotate(-2deg);}to{transform:translateY(-10px) rotate(2deg);}}
+
+        /* TICKER */
+        .ticker{background:var(--ink);overflow:hidden;white-space:nowrap;padding:.72rem 0;position:relative;z-index:2;}
+        .tick-t{display:inline-flex;animation:tickGo 22s linear infinite;}
+        .tick-t:hover{animation-play-state:paused;}
+        .tick-t span{font-family:var(--ffm);font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.5);padding:0 2rem;}
+        .ts{color:var(--fire)!important;}
+        @keyframes tickGo{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+    </style>
+</head>
+<body>
+<nav>
+    <div class="n-logo"><div class="n-pulse"></div>Campus Shenanigans</div>
+    <ul class="n-links">
+        <li><a href="#vision">Vision</a></li>
+        <li><a href="#features">Features</a></li>
+        <li><a href="#architecture">Architecture</a></li>
+        <li><a href="#team">Team</a></li>
+        <li><a href="#demo">Demo</a></li>
+        <li><a href="#postmortem">Postmortem</a></li>
+        <li><a href="#tech" class="n-cta">Tech Stack</a></li>
+    </ul>
+</nav>
+
+<section id="hero" class="hero">
+    <div class="hero-grid"></div>
+    <div class="hero-body">
+        <div>
+            <div class="hero-h">
+                <span class="hl1">Campus</span>
+                <span class="hl2">Shenanigans.
+          <svg viewBox="0 0 500 12" preserveAspectRatio="none">
+            <path d="M0,6 C80,1 160,11 240,6 C320,1 400,11 480,6 C490,5 498,7 500,6"/>
+          </svg>
+        </span>
+            </div>
+            <p class="hero-desc">Every campus event you've ever missed lived on five different websites. One app. Academic, social, cultural, recreational. 100% offline.</p>
+            <div class="hero-tags">
+                <div class="htag"> Academic</div>
+                <div class="htag"> Social</div>
+                <div class="htag"> Cultural</div>
+                <div class="htag"> Recreational</div>
+                <div class="htag"> Offline First</div>
+            </div>
+            <div class="hero-btns">
+                <a href="#demo" class="btn btn-fill" id="MAGBTN">Watch Demo →</a>
+                <a href="#vision" class="btn btn-line">Our Vision</a>
+            </div>
+        </div>
+        <div class="hero-right">
+            <div style="position:relative;width:240px;">
+                <div class="phone">
+                    <div class="ph-top"><div class="ph-name">Events</div><div class="ph-dot"></div></div>
+                    <div class="ph-body">
+                        <div class="ph-sec">Today · 4 Events</div>
+                        <div class="ph-card" style="background:#FFF0EC;">
+                            <div class="ph-ico" style="background:var(--salmon);">🔬</div>
+                            <div><div class="ph-cat">Workshop</div><div class="ph-nm">Intro to Machine Learning</div><div class="ph-meta"><span>E2-390</span><span>2:00 PM</span><span class="ph-badge" style="background:var(--lime);">Free</span></div></div>
+                        </div>
+                        <div class="ph-card" style="background:#EFF1FF;">
+                            <div class="ph-ico" style="background:var(--violet);">🎉</div>
+                            <div><div class="ph-cat">Social</div><div class="ph-nm">Spring Gala 2025</div><div class="ph-meta"><span>Ballroom</span><span>7:00 PM</span><span class="ph-badge" style="background:var(--gold);">$25</span></div></div>
+                        </div>
+                        <div class="ph-card" style="background:#EDFAF6;">
+                            <div class="ph-ico" style="background:var(--teal);">🌍</div>
+                            <div><div class="ph-cat">Cultural</div><div class="ph-nm">International Food Night</div><div class="ph-meta"><span>UC Centre</span><span>5:30 PM</span><span class="ph-badge" style="background:var(--lime);">Free</span></div></div>
+                        </div>
+                        <div class="ph-card" style="background:#FFF9EC;">
+                            <div class="ph-ico" style="background:var(--gold);">📚</div>
+                            <div><div class="ph-cat">Academic</div><div class="ph-nm">Research Symposium</div><div class="ph-meta"><span>Armes 100</span><span>10:00 AM</span><span class="ph-badge" style="background:var(--lime);">Free</span></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="fl f1"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="9" r="7" stroke="var(--teal)" stroke-width="2" fill="none"/><path d="M6,9 L8,11 L12,7" stroke="var(--teal)" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>Offline ✓</span></div>
+                <div class="fl f2"><svg width="18" height="18" viewBox="0 0 18 18"><rect x="2" y="4" width="14" height="12" rx="2" stroke="var(--violet)" stroke-width="2" fill="none"/><line x1="2" y1="8" x2="16" y2="8" stroke="var(--violet)" stroke-width="1.5"/></svg><span>2 Roles</span></div>
+                <div class="fl f3"><svg width="18" height="18" viewBox="0 0 18 18"><circle cx="9" cy="7" r="4" stroke="var(--salmon)" stroke-width="2" fill="none"/><path d="M2,17 C2,13 16,13 16,17" stroke="var(--salmon)" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>Admin Mode</span></div>
+                <div class="fl f4"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M3,2 L15,2 L16,6 L9,16 L2,6 Z" stroke="var(--gold)" stroke-width="2" fill="none" stroke-linejoin="round"/></svg><span>Local DB</span></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="vision"></section>
+<section id="features"></section>
+<section id="architecture"></section>
+<section id="team"></section>
+<section id="demo"></section>
+<section id="postmortem"></section>
+<section id="tech"></section>
+<footer></footer>
+</body>
+</html>
