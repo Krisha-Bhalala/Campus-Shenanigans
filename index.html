@@ -750,6 +750,77 @@
                 border-color: var(--fire);
                 color: var(--fire);
             }
+
+            .feat-intro {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: end;
+                margin-bottom: 3rem;
+            }
+            .feat-sub {
+                font-size: 0.95rem;
+                color: var(--ink2);
+                line-height: 1.7;
+                max-width: 360px;
+            }
+            .feat-grid {
+                display: grid;
+                grid-template-columns: repeat(4, 1fr);
+                gap: 1rem;
+            }
+            .fc {
+                border-radius: var(--r);
+                border: 2px solid var(--ink);
+                padding: 1.6rem 1.4rem;
+                box-shadow: 4px 4px 0 var(--ink);
+                display: flex;
+                flex-direction: column;
+                min-height: 210px;
+                transition:
+                    transform 0.15s,
+                    box-shadow 0.15s;
+                cursor: pointer;
+            }
+            .fc:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 6px 6px 0 var(--ink);
+            }
+            .fc-ill {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                margin-bottom: 0.9rem;
+            }
+            .fc-id {
+                font-family: var(--ffm);
+                font-size: 0.57rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                color: rgba(0, 0, 0, 0.38);
+                margin-bottom: 0.3rem;
+            }
+            .fc-nm {
+                font-family: var(--ffs);
+                font-size: 0.95rem;
+                font-weight: 700;
+                line-height: 1.2;
+                margin-bottom: 0.35rem;
+                color: var(--ink);
+            }
+            .fc-ds {
+                font-size: 0.78rem;
+                line-height: 1.5;
+                color: var(--ink2);
+            }
+            .fc-wide {
+                grid-column: span 2;
+            }
+            .fc-wide .fc-nm {
+                font-size: 1.2rem;
+            }
         </style>
     </head>
     <body>
@@ -1407,7 +1478,427 @@
                 />
             </svg>
         </div>
-        <section id="features"></section>
+        <section
+            id="features"
+            style="background: var(--off); padding: 2rem 2.5rem 6rem"
+        >
+            <div class="wrap">
+                <div class="feat-intro">
+                    <div>
+                        <div class="sec-h rv">What we<br /><i>shipped.</i></div>
+                    </div>
+                    <p class="feat-sub rv">
+                        Every feature is fully implemented, validated, and
+                        covered by unit, integration, and Espresso UI tests.
+                    </p>
+                </div>
+
+                <div class="feat-grid">
+                    <div class="fc rv d1" style="background: var(--violet)">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <circle
+                                    cx="35"
+                                    cy="22"
+                                    r="14"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="rgba(255,255,255,.4)"
+                                />
+                                <path
+                                    d="M15,58 C15,44 55,44 55,58"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                />
+                                <rect
+                                    x="28"
+                                    y="16"
+                                    width="14"
+                                    height="12"
+                                    rx="3"
+                                    fill="rgba(255,255,255,.6)"
+                                />
+                                <path
+                                    d="M31,22 L34,25 L40,19"
+                                    stroke="var(--ink)"
+                                    stroke-width="1.5"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+                        <div
+                            class="fc-id"
+                            style="color: rgba(255, 255, 255, 0.5)"
+                        >
+                            F-03
+                        </div>
+                        <div class="fc-nm">User Authentication</div>
+                        <div class="fc-ds">
+                            Users can create accounts, log in, and log out to
+                            access events
+                        </div>
+                    </div>
+
+                    <div class="fc rv" style="background: var(--salmon)">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <rect
+                                    x="10"
+                                    y="16"
+                                    width="50"
+                                    height="32"
+                                    rx="6"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="rgba(255,255,255,.35)"
+                                />
+                                <path
+                                    d="M22,32 L30,40 L48,24"
+                                    stroke="var(--ink)"
+                                    stroke-width="2.5"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-04</div>
+                        <div class="fc-nm">Host Authentication</div>
+                        <div class="fc-ds">
+                            Event hosts can log in and manage event related
+                            features
+                        </div>
+                    </div>
+
+                    <div class="fc rv d2" style="background: #fff">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <rect
+                                    x="10"
+                                    y="15"
+                                    width="50"
+                                    height="40"
+                                    rx="8"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="var(--gold)"
+                                    opacity=".25"
+                                />
+                                <line
+                                    x1="35"
+                                    y1="22"
+                                    x2="35"
+                                    y2="48"
+                                    stroke="var(--ink)"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                />
+                                <line
+                                    x1="22"
+                                    y1="35"
+                                    x2="48"
+                                    y2="35"
+                                    stroke="var(--ink)"
+                                    stroke-width="2.5"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-05</div>
+                        <div class="fc-nm">Create Events</div>
+                        <div class="fc-ds">
+                            Allow logged-in admins to create new campus events
+                            with certain details
+                        </div>
+                    </div>
+
+                    <div class="fc rv d3" style="background: var(--teal)">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <rect
+                                    x="6"
+                                    y="12"
+                                    width="58"
+                                    height="42"
+                                    rx="8"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="rgba(255,255,255,.25)"
+                                />
+                                <rect
+                                    x="14"
+                                    y="22"
+                                    width="42"
+                                    height="8"
+                                    rx="4"
+                                    fill="rgba(255,255,255,.5)"
+                                />
+                                <rect
+                                    x="14"
+                                    y="34"
+                                    width="32"
+                                    height="7"
+                                    rx="3.5"
+                                    fill="rgba(255,255,255,.4)"
+                                />
+                                <rect
+                                    x="14"
+                                    y="45"
+                                    width="24"
+                                    height="6"
+                                    rx="3"
+                                    fill="rgba(255,255,255,.3)"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-01</div>
+                        <div class="fc-nm">Event Listing</div>
+                        <div class="fc-ds">
+                            Browse upcoming and past events in one place.
+                        </div>
+                    </div>
+
+                    <div class="fc rv d4" style="background: var(--gold)">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <circle
+                                    cx="35"
+                                    cy="30"
+                                    r="18"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="rgba(255,255,255,.4)"
+                                />
+                                <circle
+                                    cx="35"
+                                    cy="30"
+                                    r="6"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="rgba(0,0,0,.1)"
+                                />
+                                <line
+                                    x1="35"
+                                    y1="12"
+                                    x2="35"
+                                    y2="7"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                />
+                                <line
+                                    x1="53"
+                                    y1="30"
+                                    x2="58"
+                                    y2="30"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    stroke-linecap="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-02</div>
+                        <div class="fc-nm">Event Details</div>
+                        <div class="fc-ds">
+                            View key details like time, date, location, and
+                            description.
+                        </div>
+                    </div>
+
+                    <div class="fc rv d5" style="background: #ebe8ff">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <rect
+                                    x="10"
+                                    y="12"
+                                    width="50"
+                                    height="42"
+                                    rx="8"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="var(--violet)"
+                                    opacity=".2"
+                                />
+                                <path
+                                    d="M20,38 L28,30 L38,40 L52,24"
+                                    stroke="var(--ink)"
+                                    stroke-width="2.5"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                                <circle
+                                    cx="52"
+                                    cy="24"
+                                    r="4"
+                                    fill="var(--violet)"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-10</div>
+                        <div class="fc-nm">Edit & Remove Events</div>
+                        <div class="fc-ds">
+                            Creators edit or delete their own events, Ownership
+                            strictly enforced
+                        </div>
+                    </div>
+
+                    <div class="fc rv" style="background: #edfaf6">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <rect
+                                    x="10"
+                                    y="10"
+                                    width="50"
+                                    height="46"
+                                    rx="8"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="var(--teal)"
+                                    opacity=".2"
+                                />
+                                <path
+                                    d="M22,33 L30,41 L48,23"
+                                    stroke="var(--teal)"
+                                    stroke-width="3"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-09</div>
+                        <div class="fc-nm">Mark Attendance</div>
+                        <div class="fc-ds">
+                            Mark events as "Attending" or "Interested" to track
+                            participation
+                        </div>
+                    </div>
+
+                    <div class="fc rv d1" style="background: #fff9ec">
+                        <div class="fc-ill">
+                            <svg width="70" height="65" viewBox="0 0 70 65">
+                                <path
+                                    d="M15,10 L55,10 L55,58 L35,46 L15,58 Z"
+                                    stroke="var(--ink)"
+                                    stroke-width="2"
+                                    fill="var(--gold)"
+                                    opacity=".3"
+                                    stroke-linejoin="round"
+                                />
+                                <path
+                                    d="M25,25 L35,35 L45,22"
+                                    stroke="var(--ink)"
+                                    stroke-width="2.5"
+                                    fill="none"
+                                    stroke-linecap="round"
+                                    stroke-linejoin="round"
+                                />
+                            </svg>
+                        </div>
+                        <div class="fc-id">F-11</div>
+                        <div class="fc-nm">View Saved Events</div>
+                        <div class="fc-ds">
+                            View only events marked as attending or interested
+                            in one list
+                        </div>
+                    </div>
+                </div>
+
+                <div
+                    style="
+                        margin-top: 1.5rem;
+                        padding: 1.5rem 2rem;
+                        background: rgba(0, 0, 0, 0.04);
+                        border: 2px dashed rgba(0, 0, 0, 0.15);
+                        border-radius: var(--r);
+                        display: flex;
+                        align-items: center;
+                        gap: 1.5rem;
+                    "
+                    class="rv"
+                >
+                    <div
+                        style="
+                            font-family: var(--ffm);
+                            font-size: 0.6rem;
+                            font-weight: 700;
+                            letter-spacing: 0.15em;
+                            text-transform: uppercase;
+                            color: var(--mid);
+                            flex-shrink: 0;
+                            white-space: nowrap;
+                        "
+                    >
+                        More to Come ✦
+                    </div>
+                    <div style="display: flex; flex-wrap: wrap; gap: 0.45rem">
+                        <div
+                            style="
+                                font-size: 0.78rem;
+                                font-weight: 500;
+                                padding: 0.26rem 0.78rem;
+                                border-radius: 99px;
+                                border: 1.5px dashed rgba(0, 0, 0, 0.2);
+                                color: var(--mid);
+                            "
+                        >
+                            F-06 · Search Events
+                        </div>
+                        <div
+                            style="
+                                font-size: 0.78rem;
+                                font-weight: 500;
+                                padding: 0.26rem 0.78rem;
+                                border-radius: 99px;
+                                border: 1.5px dashed rgba(0, 0, 0, 0.2);
+                                color: var(--mid);
+                            "
+                        >
+                            F-08 · Filter & Sort Events
+                        </div>
+                        <div
+                            style="
+                                font-size: 0.78rem;
+                                font-weight: 500;
+                                padding: 0.26rem 0.78rem;
+                                border-radius: 99px;
+                                border: 1.5px dashed rgba(0, 0, 0, 0.2);
+                                color: var(--mid);
+                            "
+                        >
+                            F-12 · Look Up Upcoming Events
+                        </div>
+                        <div
+                            style="
+                                font-size: 0.78rem;
+                                font-weight: 500;
+                                padding: 0.26rem 0.78rem;
+                                border-radius: 99px;
+                                border: 1.5px dashed rgba(0, 0, 0, 0.2);
+                                color: var(--mid);
+                            "
+                        >
+                            F-13 · Friends List
+                        </div>
+                        <div
+                            style="
+                                font-size: 0.78rem;
+                                font-weight: 500;
+                                padding: 0.26rem 0.78rem;
+                                border-radius: 99px;
+                                border: 1.5px dashed rgba(0, 0, 0, 0.2);
+                                color: var(--mid);
+                            "
+                        >
+                            F-14 · Recommendation Algorithm
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div
             style="
                 background: var(--off);
