@@ -821,6 +821,158 @@
             .fc-wide .fc-nm {
                 font-size: 1.2rem;
             }
+
+            .arch-top {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 3rem;
+                align-items: end;
+                margin-bottom: 2.5rem;
+            }
+            .arch-sub {
+                font-size: 0.95rem;
+                color: var(--ink2);
+                line-height: 1.7;
+                max-width: 400px;
+            }
+            .arch-img {
+                border: 2.5px solid var(--ink);
+                border-radius: var(--r);
+                overflow: hidden;
+                box-shadow: 6px 6px 0 var(--ink);
+                margin-bottom: 2.5rem;
+            }
+            .arch-img-lbl {
+                background: var(--violet);
+                padding: 0.6rem 1.2rem;
+                font-family: var(--ffm);
+                font-size: 0.62rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: #fff;
+                border-bottom: 2px solid var(--ink);
+            }
+            .arch-img img {
+                width: 100%;
+                display: block;
+            }
+            .layer-row {
+                display: grid;
+                grid-template-columns: repeat(5, 1fr);
+                gap: 0.7rem;
+                margin-bottom: 2rem;
+            }
+            .lc {
+                border-radius: 10px;
+                border: 2px solid var(--ink);
+                padding: 0.9rem 1rem;
+                box-shadow: 3px 3px 0 var(--ink);
+                transition: transform 0.15s;
+            }
+            .lc:hover {
+                transform: translateY(-3px);
+            }
+            .lc-bar {
+                height: 4px;
+                border-radius: 2px;
+                margin-bottom: 0.55rem;
+            }
+            .lc-nm {
+                font-family: var(--ffs);
+                font-size: 0.82rem;
+                font-weight: 700;
+                margin-bottom: 0.15rem;
+            }
+            .lc-pkg {
+                font-family: var(--ffm);
+                font-size: 0.57rem;
+                color: var(--mid);
+                line-height: 1.4;
+            }
+            .arch-pair {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+            .flow-card {
+                background: var(--off);
+                border: 2px solid var(--ink);
+                border-radius: var(--r);
+                padding: 1.8rem;
+                box-shadow: 3px 3px 0 var(--ink);
+            }
+            .flow-card h3 {
+                font-family: var(--ffs);
+                font-size: 1rem;
+                font-weight: 700;
+                margin-bottom: 1.2rem;
+            }
+            .fl-step {
+                display: flex;
+                gap: 0.85rem;
+                margin-bottom: 0.85rem;
+                position: relative;
+            }
+            .fl-step:not(:last-child)::after {
+                content: "";
+                position: absolute;
+                left: 12px;
+                top: 26px;
+                width: 1px;
+                height: calc(100%);
+                background: rgba(0, 0, 0, 0.1);
+            }
+            .fl-n {
+                width: 26px;
+                height: 26px;
+                border-radius: 50%;
+                border: 2px solid var(--ink);
+                font-family: var(--ffm);
+                font-size: 0.66rem;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                flex-shrink: 0;
+                background: var(--w);
+                position: relative;
+                z-index: 1;
+            }
+            .fl-t strong {
+                display: block;
+                font-size: 0.84rem;
+                font-weight: 700;
+                margin-bottom: 0.1rem;
+            }
+            .fl-t span {
+                font-size: 0.76rem;
+                color: var(--ink2);
+                line-height: 1.5;
+            }
+            .win-card {
+                background: var(--ink);
+                border-radius: var(--r);
+                padding: 2rem;
+                box-shadow: 3px 3px 0 var(--violet);
+            }
+            .win-card h3 {
+                font-family: var(--ffm);
+                font-size: 0.62rem;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 0.6rem;
+            }
+            .win-card p {
+                font-size: 0.85rem;
+                line-height: 1.75;
+                color: rgba(255, 255, 255, 0.65);
+            }
+            .win-card strong {
+                color: #fff;
+            }
         </style>
     </head>
     <body>
@@ -1918,7 +2070,207 @@
                 />
             </svg>
         </div>
-        <section id="architecture"></section>
+        <section
+            id="architecture"
+            style="background: var(--w); padding: 2rem 2.5rem 6rem"
+        >
+            <div class="wrap">
+                <div class="arch-top">
+                    <div>
+                        <div class="sec-lbl rv">System Design</div>
+                        <div class="sec-h rv">
+                            Built in layers.<br /><i>Stays clean.</i>
+                        </div>
+                    </div>
+                    <p class="arch-sub rv">
+                        Five fully separated layers, each with a single
+                        responsibility, communicating only through defined
+                        interfaces, testable in complete isolation.
+                    </p>
+                </div>
+
+                <div class="arch-img rv">
+                    <div class="arch-img-lbl">
+                        Group 6 — Architecture Diagram
+                    </div>
+                    <img
+                        src="../docs/Architecture Diagram.jpg"
+                        alt="Campus Shenanigans Architecture Diagram"
+                    />
+                </div>
+
+                <div class="layer-row rv">
+                    <div class="lc" style="background: #fff0ec">
+                        <div
+                            class="lc-bar"
+                            style="background: var(--salmon)"
+                        ></div>
+                        <div class="lc-nm">Presentation</div>
+                        <div class="lc-pkg">
+                            Activities · Fragments · ViewModels · Presenters
+                        </div>
+                    </div>
+
+                    <div class="lc" style="background: #eff1ff">
+                        <div
+                            class="lc-bar"
+                            style="background: var(--violet)"
+                        ></div>
+                        <div class="lc-nm">Logic</div>
+                        <div class="lc-pkg">
+                            AuthService · EventService · Validators ·
+                            SessionManager
+                        </div>
+                    </div>
+
+                    <div class="lc" style="background: #edfaf6">
+                        <div
+                            class="lc-bar"
+                            style="background: var(--teal)"
+                        ></div>
+                        <div class="lc-nm">Data Layer</div>
+                        <div class="lc-pkg">
+                            Domain Models · Persistence Interfaces ·
+                            Repositories
+                        </div>
+                    </div>
+
+                    <div class="lc" style="background: #fff9ec">
+                        <div
+                            class="lc-bar"
+                            style="background: var(--gold)"
+                        ></div>
+                        <div class="lc-nm">Persistence</div>
+                        <div class="lc-pkg">
+                            SQLite · Stubs · Mappers · Schemas
+                        </div>
+                    </div>
+
+                    <div class="lc" style="background: #f5f3ff">
+                        <div class="lc-bar" style="background: #9b8fff"></div>
+                        <div class="lc-nm">Application</div>
+                        <div class="lc-pkg">
+                            CampusShenanigans · ServiceContainer ·
+                            PersistenceContainer
+                        </div>
+                    </div>
+                </div>
+
+                <div class="arch-pair">
+                    <div class="flow-card rv d1">
+                        <h3>Data Flow — 5 Steps</h3>
+
+                        <div class="fl-step">
+                            <div
+                                class="fl-n"
+                                style="
+                                    border-color: var(--salmon);
+                                    color: var(--salmon);
+                                "
+                            >
+                                1
+                            </div>
+                            <div class="fl-t">
+                                <strong>User Action</strong>
+                                <span
+                                    >Presentation layer captures input and
+                                    delegates requests to the logic layer.</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="fl-step">
+                            <div
+                                class="fl-n"
+                                style="
+                                    border-color: var(--violet);
+                                    color: var(--violet);
+                                "
+                            >
+                                2
+                            </div>
+                            <div class="fl-t">
+                                <strong>Business Logic</strong>
+                                <span
+                                    >Services apply validation rules,
+                                    permissions, and business workflows
+                                    independent of UI or storage.</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="fl-step">
+                            <div
+                                class="fl-n"
+                                style="
+                                    border-color: var(--teal);
+                                    color: var(--teal);
+                                "
+                            >
+                                3
+                            </div>
+                            <div class="fl-t">
+                                <strong>Data Access</strong>
+                                <span
+                                    >Logic interacts with persistence through
+                                    interfaces, ensuring loose coupling.</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="fl-step">
+                            <div
+                                class="fl-n"
+                                style="
+                                    border-color: var(--gold);
+                                    color: #8a6800;
+                                "
+                            >
+                                4
+                            </div>
+                            <div class="fl-t">
+                                <strong>Persistence Execution</strong>
+                                <span
+                                    >Concrete implementations (SQLite or stubs)
+                                    perform CRUD operations and map data to
+                                    domain models.</span
+                                >
+                            </div>
+                        </div>
+
+                        <div class="fl-step" style="margin-bottom: 0">
+                            <div
+                                class="fl-n"
+                                style="border-color: #9b8fff; color: #9b8fff"
+                            >
+                                5
+                            </div>
+                            <div class="fl-t">
+                                <strong>UI Update</strong>
+                                <span
+                                    >Processed results propagate back to the
+                                    presentation layer, updating the UI
+                                    state.</span
+                                >
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="win-card rv d2">
+                        <h3>Why This Works</h3>
+                        <p>
+                            The architecture enforces strict separation of
+                            concerns. Business logic remains completely
+                            independent of UI and storage, while persistence is
+                            interchangeable through interfaces. This allowed the
+                            team to switch from stub data to a real SQLite
+                            database with <strong>zero changes</strong> to the
+                            logic and presentation layers.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div
             style="
                 background: var(--w);
