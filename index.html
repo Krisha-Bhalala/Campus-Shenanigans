@@ -973,6 +973,208 @@
             .win-card strong {
                 color: #fff;
             }
+
+            .pm-stats {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin-bottom: 2rem;
+            }
+            .pm-stat {
+                background: var(--off);
+                border: 2.5px solid var(--ink);
+                border-radius: var(--r);
+                padding: 2rem;
+                box-shadow: 4px 4px 0 var(--ink);
+                transition:
+                    transform 0.15s,
+                    box-shadow 0.15s;
+                cursor: pointer;
+            }
+            .pm-stat:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 6px 6px 0 var(--ink);
+            }
+            .pm-n {
+                font-family: var(--ffs);
+                font-size: 5rem;
+                font-weight: 900;
+                line-height: 1;
+                letter-spacing: -0.05em;
+                margin-bottom: 0.3rem;
+            }
+            .pm-l {
+                font-family: var(--ffm);
+                font-size: 0.64rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--mid);
+            }
+            .pm-pair {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.2rem;
+                margin-bottom: 1.2rem;
+            }
+            .pm-blk {
+                background: var(--off);
+                border: 2px solid var(--ink);
+                border-radius: var(--r);
+                padding: 2rem;
+                box-shadow: 3px 3px 0 var(--ink);
+                transition:
+                    transform 0.15s,
+                    box-shadow 0.15s;
+            }
+            .pm-blk:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 5px 5px 0 var(--ink);
+            }
+            .pm-bh {
+                font-family: var(--ffs);
+                font-size: 0.95rem;
+                font-weight: 700;
+                display: flex;
+                align-items: center;
+                gap: 0.6rem;
+                margin-bottom: 1rem;
+            }
+            .pm-dot {
+                width: 10px;
+                height: 10px;
+                border-radius: 50%;
+                flex-shrink: 0;
+            }
+            .pm-list {
+                list-style: none;
+            }
+            .pm-list li {
+                font-size: 0.84rem;
+                color: var(--ink2);
+                line-height: 1.6;
+                padding: 0.48rem 0;
+                border-bottom: 1.5px dashed rgba(0, 0, 0, 0.08);
+                display: flex;
+                gap: 0.6rem;
+            }
+            .pm-list li:last-child {
+                border-bottom: none;
+            }
+            .pm-list li::before {
+                content: "→";
+                color: var(--ghost);
+                flex-shrink: 0;
+            }
+            .pm-iter {
+                background: var(--violet);
+                border: 2px solid var(--ink);
+                border-radius: var(--r);
+                padding: 2.5rem;
+                margin-bottom: 1.2rem;
+                box-shadow: 4px 4px 0 var(--ink);
+                position: relative;
+                overflow: hidden;
+            }
+            .pm-iter-ghost {
+                position: absolute;
+                right: -20px;
+                bottom: -30px;
+                font-family: var(--ffs);
+                font-size: 7rem;
+                font-weight: 900;
+                color: rgba(255, 255, 255, 0.04);
+                pointer-events: none;
+                white-space: nowrap;
+            }
+            .pm-iter-tag {
+                font-family: var(--ffm);
+                font-size: 0.6rem;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 0.8rem;
+            }
+            .pm-iter h3 {
+                font-family: var(--ffs);
+                font-size: 1.3rem;
+                font-weight: 700;
+                color: #fff;
+                margin-bottom: 1.2rem;
+            }
+            .iter-tl {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+                margin: 1.2rem 0;
+            }
+            .it {
+                background: rgba(255, 255, 255, 0.1);
+                border: 1px solid rgba(255, 255, 255, 0.15);
+                border-radius: 10px;
+                padding: 1rem;
+            }
+            .it-lbl {
+                font-family: var(--ffm);
+                font-size: 0.6rem;
+                font-weight: 700;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+                color: var(--gold);
+                margin-bottom: 0.5rem;
+            }
+            .it p {
+                font-size: 0.79rem;
+                color: rgba(255, 255, 255, 0.68);
+                line-height: 1.6;
+            }
+            .pm-iter p {
+                font-size: 0.87rem;
+                line-height: 1.8;
+                color: rgba(255, 255, 255, 0.72);
+                margin-bottom: 0.8rem;
+            }
+            .pm-iter p:last-child {
+                margin-bottom: 0;
+            }
+            .pm-iter strong {
+                color: #fff;
+            }
+            .pm-3 {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+            .pm-lesson {
+                border-radius: var(--r);
+                border: 2px solid var(--ink);
+                padding: 1.8rem;
+                box-shadow: 4px 4px 0 var(--ink);
+                transition:
+                    transform 0.15s,
+                    box-shadow 0.15s;
+                cursor: pointer;
+            }
+            .pm-lesson:hover {
+                transform: translate(-2px, -2px);
+                box-shadow: 6px 6px 0 var(--ink);
+            }
+            .pm-lesson-ill {
+                display: block;
+                margin-bottom: 0.9rem;
+            }
+            .pm-lesson h3 {
+                font-family: var(--ffs);
+                font-size: 0.95rem;
+                font-weight: 700;
+                margin-bottom: 0.7rem;
+            }
+            .pm-lesson p {
+                font-size: 0.82rem;
+                color: var(--ink2);
+                line-height: 1.75;
+            }
         </style>
     </head>
     <body>
@@ -985,10 +1187,10 @@
                 <li><a href="#vision">Vision</a></li>
                 <li><a href="#features">Features</a></li>
                 <li><a href="#architecture">Architecture</a></li>
-                <li><a href="#team">Team</a></li>
                 <li><a href="#demo">Demo</a></li>
                 <li><a href="#postmortem">Postmortem</a></li>
                 <li><a href="#tech" class="n-cta">Tech Stack</a></li>
+                <li><a href="#team">Team</a></li>
             </ul>
         </nav>
 
@@ -2330,7 +2532,198 @@
                 />
             </svg>
         </div>
-        <section id="postmortem"></section>
+        <section
+            id="postmortem"
+            style="background: var(--w); padding: 2rem 2.5rem 6rem"
+        >
+            <div class="wrap">
+                <div class="sec-lbl rv">Development Reflection</div>
+                <div class="sec-h rv" style="margin-bottom: 0.8rem">
+                    Honest.<br /><i>Postmortem.</i>
+                </div>
+                <p
+                    class="rv"
+                    style="
+                        font-size: 0.95rem;
+                        color: var(--ink2);
+                        line-height: 1.7;
+                        max-width: 520px;
+                        margin-bottom: 3rem;
+                    "
+                >
+                    A candid look at architecture decisions, process strengths,
+                    and what we'd do differently.
+                </p>
+
+                <div class="pm-stats rv">
+                    <div class="pm-stat" style="background: #fff0ec">
+                        <div class="pm-n" style="color: var(--salmon)">8</div>
+                        <div class="pm-l">Features Shipped</div>
+                    </div>
+                    <div class="pm-stat" style="background: #eff1ff">
+                        <div class="pm-n" style="color: var(--violet)">5</div>
+                        <div class="pm-l">Architecture Layers</div>
+                    </div>
+                    <div class="pm-stat" style="background: #edfaf6">
+                        <div class="pm-n" style="color: var(--teal)">100%</div>
+                        <div class="pm-l">Tests Passing</div>
+                    </div>
+                </div>
+
+                <div class="pm-pair rv">
+                    <div class="pm-blk" style="background: #edfaf6">
+                        <div class="pm-bh">
+                            <div
+                                class="pm-dot"
+                                style="background: var(--teal)"
+                            ></div>
+                            What Went Well
+                        </div>
+                        <ul class="pm-list"></ul>
+                    </div>
+                    <div class="pm-blk" style="background: #fff0ec">
+                        <div class="pm-bh">
+                            <div
+                                class="pm-dot"
+                                style="background: var(--salmon)"
+                            ></div>
+                            What Was Challenging
+                        </div>
+                        <ul class="pm-list"></ul>
+                    </div>
+                </div>
+
+                <div class="pm-iter rv">
+                    <div class="pm-iter-ghost">ITERATION 2</div>
+                    <div class="pm-iter-tag">
+                        Improvement Area · Identified After Iteration 2
+                        Retrospective
+                    </div>
+                    <h3>what found? heading</h3>
+                    <div class="iter-tl">
+                        <div class="it">
+                            <div class="it-lbl">What We Found</div>
+                            <p></p>
+                        </div>
+                        <div class="it">
+                            <div class="it-lbl">What Changed</div>
+                            <p></p>
+                        </div>
+                        <div class="it">
+                            <div class="it-lbl">Evidence It Worked</div>
+                            <p></p>
+                        </div>
+                    </div>
+                    <p><strong>Net outcome:</strong></p>
+                </div>
+
+                <div class="pm-3 rv">
+                    <div class="pm-lesson" style="background: #fff0ec">
+                        <svg
+                            class="pm-lesson-ill"
+                            width="50"
+                            height="50"
+                            viewBox="0 0 50 50"
+                        >
+                            <rect
+                                x="5"
+                                y="5"
+                                width="40"
+                                height="40"
+                                rx="8"
+                                stroke="var(--ink)"
+                                stroke-width="2"
+                                fill="var(--salmon)"
+                                opacity=".3"
+                            />
+                            <path
+                                d="M15,25 L20,30 L35,18"
+                                stroke="var(--ink)"
+                                stroke-width="2.5"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                            />
+                        </svg>
+                        <h3>Architecture Lesson</h3>
+                        <p>.</p>
+                    </div>
+                    <div class="pm-lesson" style="background: #eff1ff">
+                        <svg
+                            class="pm-lesson-ill"
+                            width="50"
+                            height="50"
+                            viewBox="0 0 50 50"
+                        >
+                            <circle
+                                cx="25"
+                                cy="25"
+                                r="20"
+                                stroke="var(--ink)"
+                                stroke-width="2"
+                                fill="var(--violet)"
+                                opacity=".3"
+                            />
+                            <line
+                                x1="25"
+                                y1="14"
+                                x2="25"
+                                y2="26"
+                                stroke="var(--ink)"
+                                stroke-width="2.5"
+                                stroke-linecap="round"
+                            />
+                            <circle cx="25" cy="33" r="2" fill="var(--ink)" />
+                        </svg>
+                        <h3>Process Lesson</h3>
+                        <p>.</p>
+                    </div>
+                    <div class="pm-lesson" style="background: #edfaf6">
+                        <svg
+                            class="pm-lesson-ill"
+                            width="50"
+                            height="50"
+                            viewBox="0 0 50 50"
+                        >
+                            <circle
+                                cx="16"
+                                cy="18"
+                                r="9"
+                                stroke="var(--ink)"
+                                stroke-width="2"
+                                fill="var(--teal)"
+                                opacity=".4"
+                            />
+                            <circle
+                                cx="34"
+                                cy="18"
+                                r="9"
+                                stroke="var(--ink)"
+                                stroke-width="2"
+                                fill="var(--teal)"
+                                opacity=".4"
+                            />
+                            <path
+                                d="M4,40 C4,30 28,30 28,40"
+                                stroke="var(--ink)"
+                                stroke-width="2"
+                                fill="none"
+                                stroke-linecap="round"
+                            />
+                            <path
+                                d="M22,40 C22,30 46,30 46,40"
+                                stroke="var(--ink)"
+                                stroke-width="2"
+                                fill="none"
+                                stroke-linecap="round"
+                            />
+                        </svg>
+                        <h3>Teamwork Lesson</h3>
+                        <p>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
         <div
             style="
                 background: var(--w);
