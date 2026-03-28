@@ -417,6 +417,28 @@
         .foot-r{text-align:right;}
         .foot-stack{font-family:var(--ffm);font-size:.68rem;color:rgba(255,255,255,.2);line-height:2.1;}
         .foot-stack span{color:rgba(255,255,255,.48);}
+
+        @media(max-width:900px){
+        nav{padding:0 1.2rem;}.n-links{display:none;}
+        .hero-body{grid-template-columns:1fr;padding-top:2rem;}.hero-right{display:none;}
+        .vision-big,.v-cards,.v-stats,.feat-intro,.arch-top,.arch-pair,.demo-layout,.tech-grid,.pm-pair,.pm-3,.team-hdr{grid-template-columns:1fr;}
+        .feat-grid{grid-template-columns:1fr 1fr;}.fc-wide{grid-column:span 1;}
+        .pm-stats{grid-template-columns:1fr;}.iter-tl{grid-template-columns:1fr;}
+        .layer-row{grid-template-columns:repeat(3,1fr);}.t-grid{grid-template-columns:1fr 1fr 1fr;}
+        .foot-in{grid-template-columns:1fr;}.foot-r{text-align:left;}
+        .roadmap{flex-direction:column;gap:1rem;}
+        section,.sec{padding-left:1.5rem;padding-right:1.5rem;}
+        footer{padding:3.5rem 1.5rem 3rem;}
+        }
+        @media(max-width:560px){
+        .feat-grid{grid-template-columns:1fr;}.creds{grid-template-columns:1fr;}
+        .layer-row{grid-template-columns:1fr 1fr;}.t-grid{grid-template-columns:1fr 1fr;}
+        }
+
+        /* CURSOR */
+        #CUR{position:fixed;top:0;left:0;z-index:9999;pointer-events:none;}
+        .c-dot{position:absolute;width:10px;height:10px;background:var(--fire);border-radius:50%;transform:translate(-50%,-50%);}
+        .c-ring{position:absolute;width:36px;height:36px;border:2px solid var(--ink);border-radius:50%;transform:translate(-50%,-50%);transition:width .25s,height .25s,border-color .25s;opacity:.4;}
     </style>
 </head>
 <body>
@@ -823,14 +845,47 @@
     </div>
 </footer>
 
+<div id="CUR"><div class="c-ring" id="RING"></div><div class="c-dot" id="DOT"></div></div>
+
 <script>
-    const revealElements = document.querySelectorAll('.rv');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) entry.target.classList.add('in');
+    /* CURSOR */
+    const DOT=document.getElementById('DOT'),RING=document.getElementById('RING'),CUR=document.getElementById('CUR');
+    let mx=0,my=0,rx=0,ry=0;
+    document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;DOT.style.left=mx+'px';DOT.style.top=my+'px';});
+    (function loop(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;CUR.style.left=rx+'px';CUR.style.top=ry+'px';requestAnimationFrame(loop);})();
+    document.querySelectorAll('a,.btn,.fc,.vc,.tc,.vstat,.pm-stat,.pm-blk,.pm-lesson,.df,.lc,.rm-it').forEach(el=>{
+      el.addEventListener('mouseenter',()=>{RING.style.width='58px';RING.style.height='58px';RING.style.borderColor='var(--fire)';RING.style.opacity='.75';});
+      el.addEventListener('mouseleave',()=>{RING.style.width='36px';RING.style.height='36px';RING.style.borderColor='var(--ink)';RING.style.opacity='.4';});
+    });
+
+    /* SCROLL REVEAL */
+    const obs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting)e.target.classList.add('in');});},{threshold:0.08});
+    document.querySelectorAll('.rv').forEach(el=>obs.observe(el));
+
+    /* MAGNETIC BUTTON */
+    const mb=document.getElementById('MAGBTN');
+    if(mb){
+      mb.addEventListener('mousemove',e=>{const r=mb.getBoundingClientRect();mb.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.28}px,${(e.clientY-r.top-r.height/2)*.28}px) translateY(-3px)`;});
+      mb.addEventListener('mouseleave',()=>mb.style.transform='');
+    }
+
+    /* NAV ACTIVE */
+    const SECS=document.querySelectorAll('section[id]');
+    const NLS=document.querySelectorAll('.n-links a:not(.n-cta)');
+    window.addEventListener('scroll',()=>{
+      let cur='';SECS.forEach(s=>{if(window.scrollY+70>=s.offsetTop)cur=s.id;});
+      NLS.forEach(a=>{const on=a.getAttribute('href')==='#'+cur;a.style.background=on?'var(--ink)':'';a.style.color=on?'#fff':'';});
+    },{passive:true});
+
+    /* LABEL SCRAMBLE */
+    const CH='ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+    document.querySelectorAll('.sec-lbl,.t-lbl').forEach(el=>{
+      const o=el.textContent.trim();
+      el.addEventListener('mouseenter',()=>{
+        let f=0,t=14;
+        const iv=setInterval(()=>{el.textContent=[...o].map((c,i)=>c===' '||c==='·'?c:f/t>i/o.length?c:CH[Math.floor(Math.random()*CH.length)]).join('');if(++f>t){clearInterval(iv);el.textContent=o;}},35);
       });
-    }, { threshold: 0.1 });
-    revealElements.forEach(el => observer.observe(el));
+    });
 </script>
 </body>
 </html>
