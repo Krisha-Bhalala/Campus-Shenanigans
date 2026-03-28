@@ -44,7 +44,6 @@
                 color: var(--ink);
                 font-family: var(--ff);
                 overflow-x: hidden;
-                cursor: none;
                 -webkit-font-smoothing: antialiased;
             }
             a {
@@ -56,7 +55,6 @@
                 display: block;
             }
 
-            /* NAV */
             nav {
                 position: fixed;
                 top: 0;
@@ -124,7 +122,6 @@
                 background: var(--ink) !important;
             }
 
-            /* HERO */
             .hero {
                 min-height: 100vh;
                 padding-top: 60px;
@@ -269,16 +266,6 @@
             .btn-line:hover {
                 background: var(--off);
             }
-            @keyframes up {
-                from {
-                    opacity: 0;
-                    transform: translateY(22px);
-                }
-                to {
-                    opacity: 1;
-                    transform: translateY(0);
-                }
-            }
             .rv {
                 opacity: 0;
                 transform: translateY(20px);
@@ -306,7 +293,6 @@
                 transition-delay: 0.25s;
             }
 
-            /* PHONE */
             .hero-right {
                 display: flex;
                 justify-content: center;
@@ -467,7 +453,6 @@
                 }
             }
 
-            /* TICKER */
             .ticker {
                 background: var(--ink);
                 overflow: hidden;
@@ -504,10 +489,6 @@
                 }
             }
 
-            .sec {
-                padding: 6rem 2.5rem;
-                position: relative;
-            }
             .wrap {
                 max-width: var(--max);
                 margin: 0 auto;
@@ -562,12 +543,6 @@
             .vstat:hover {
                 transform: translate(-2px, -2px);
                 box-shadow: 6px 6px 0 var(--ink);
-            }
-            .vs-ill {
-                position: absolute;
-                right: 1rem;
-                top: 50%;
-                transform: translateY(-50%);
             }
             .vs-num {
                 font-family: var(--ffs);
@@ -814,12 +789,6 @@
                 font-size: 0.78rem;
                 line-height: 1.5;
                 color: var(--ink2);
-            }
-            .fc-wide {
-                grid-column: span 2;
-            }
-            .fc-wide .fc-nm {
-                font-size: 1.2rem;
             }
 
             .arch-top {
@@ -1175,6 +1144,374 @@
                 color: var(--ink2);
                 line-height: 1.75;
             }
+
+            #team {
+                background: var(--navy);
+                padding: 1rem 2.5rem 6rem;
+            }
+            .t-lbl {
+                font-family: var(--ffm);
+                font-size: 0.62rem;
+                font-weight: 700;
+                letter-spacing: 0.16em;
+                text-transform: uppercase;
+                color: rgba(255, 255, 255, 0.3);
+                margin-bottom: 0.8rem;
+                display: flex;
+                align-items: center;
+                gap: 0.5rem;
+            }
+            .t-lbl::before {
+                content: "";
+                width: 18px;
+                height: 2px;
+                background: var(--gold);
+            }
+            .t-title {
+                font-family: var(--ffs);
+                font-weight: 900;
+                font-size: clamp(2.4rem, 5vw, 4.2rem);
+                line-height: 0.92;
+                letter-spacing: -0.03em;
+                color: #fff;
+            }
+            .t-title i {
+                font-style: italic;
+                color: var(--gold);
+            }
+            .t-sub {
+                font-size: 0.95rem;
+                color: rgba(255, 255, 255, 0.45);
+                line-height: 1.7;
+                max-width: 380px;
+            }
+
+            /* ── DEMO — premium centered ── */
+            #demo {
+                background: var(--teal);
+                padding: 5rem 2.5rem 7rem;
+                position: relative;
+                overflow: hidden;
+            }
+            #demo::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-image: radial-gradient(
+                    rgba(255, 255, 255, 0.12) 1px,
+                    transparent 1px
+                );
+                background-size: 28px 28px;
+                pointer-events: none;
+                mask-image: linear-gradient(
+                    to bottom,
+                    transparent,
+                    black 20%,
+                    black 80%,
+                    transparent
+                );
+            }
+            .demo-wrap {
+                max-width: var(--max);
+                margin: 0 auto;
+                position: relative;
+                z-index: 2;
+            }
+
+            .demo-header {
+                display: flex;
+                align-items: flex-end;
+                justify-content: space-between;
+                margin-bottom: 4rem;
+            }
+            .demo-header .sec-lbl {
+                color: rgba(0, 0, 0, 0.45);
+            }
+            .demo-header .sec-lbl::before {
+                background: var(--ink);
+            }
+            .demo-header .sec-h {
+                color: var(--ink);
+            }
+            .demo-header .sec-h i {
+                color: var(--ink);
+            }
+            .demo-eyebrow {
+                font-family: var(--ffm);
+                font-size: 0.6rem;
+                font-weight: 700;
+                letter-spacing: 0.14em;
+                text-transform: uppercase;
+                color: rgba(0, 0, 0, 0.38);
+                text-align: right;
+                line-height: 1.9;
+            }
+
+            /* glow halo */
+            .demo-stage {
+                position: relative;
+                display: flex;
+                justify-content: center;
+            }
+            .demo-stage::before {
+                content: "";
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -52%);
+                width: 75%;
+                height: 60%;
+                background: radial-gradient(
+                    ellipse,
+                    rgba(255, 255, 255, 0.55) 0%,
+                    transparent 70%
+                );
+                filter: blur(40px);
+                pointer-events: none;
+                border-radius: 50%;
+            }
+
+            /* macbook-style device */
+            .demo-device {
+                width: min(880px, 100%);
+                border-radius: 18px;
+                border: 3px solid var(--ink);
+                background: #161412;
+                box-shadow:
+                    10px 10px 0 var(--ink),
+                    0 50px 100px rgba(0, 0, 0, 0.3),
+                    0 10px 30px rgba(0, 0, 0, 0.2);
+                overflow: hidden;
+                transition:
+                    transform 0.5s cubic-bezier(0.22, 1, 0.36, 1),
+                    box-shadow 0.5s;
+                position: relative;
+                z-index: 2;
+            }
+            .demo-device:hover {
+                transform: perspective(1400px) rotateX(3deg) rotateY(-2.5deg)
+                    translateY(-8px) scale(1.01);
+                box-shadow:
+                    14px 16px 0 var(--ink),
+                    0 70px 120px rgba(0, 0, 0, 0.35),
+                    0 16px 40px rgba(0, 0, 0, 0.22);
+            }
+            .demo-titlebar {
+                background: #1a1814;
+                padding: 0.8rem 1.2rem;
+                display: flex;
+                align-items: center;
+                gap: 0.45rem;
+                border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            }
+            .dtc {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                transition: filter 0.2s;
+            }
+            .dtc:hover {
+                filter: brightness(1.3);
+            }
+            .dtc-r {
+                background: #ff5f57;
+            }
+            .dtc-y {
+                background: #febc2e;
+            }
+            .dtc-g {
+                background: #27c840;
+            }
+            .dtc-spacer {
+                flex: 1;
+            }
+            .dtc-label {
+                font-family: var(--ffm);
+                font-size: 0.6rem;
+                color: rgba(255, 255, 255, 0.18);
+                letter-spacing: 0.07em;
+                text-align: center;
+            }
+
+            /* screen area */
+            .demo-canvas {
+                aspect-ratio: 16/9;
+                background: linear-gradient(
+                    135deg,
+                    #1d2140 0%,
+                    #2a0848 55%,
+                    #0d1f3c 100%
+                );
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 1.4rem;
+                position: relative;
+                overflow: hidden;
+            }
+            /* star field */
+            .demo-canvas::before {
+                content: "";
+                position: absolute;
+                inset: 0;
+                background-image:
+                    radial-gradient(
+                        1px 1px at 15% 22%,
+                        rgba(255, 255, 255, 0.6) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1px 1px at 42% 8%,
+                        rgba(255, 255, 255, 0.4) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1.5px 1.5px at 70% 18%,
+                        rgba(255, 255, 255, 0.5) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1px 1px at 88% 35%,
+                        rgba(255, 255, 255, 0.3) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1px 1px at 25% 75%,
+                        rgba(255, 255, 255, 0.4) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1.5px 1.5px at 55% 85%,
+                        rgba(255, 255, 255, 0.5) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1px 1px at 80% 70%,
+                        rgba(255, 255, 255, 0.3) 0%,
+                        transparent 100%
+                    ),
+                    radial-gradient(
+                        1px 1px at 8% 50%,
+                        rgba(255, 255, 255, 0.25) 0%,
+                        transparent 100%
+                    );
+                pointer-events: none;
+            }
+            .d-ring {
+                position: absolute;
+                border-radius: 50%;
+                border: 1px solid rgba(255, 255, 255, 0.06);
+                animation: dRing 5s ease-in-out infinite;
+            }
+            .d-ring:nth-child(1) {
+                width: 180px;
+                height: 180px;
+            }
+            .d-ring:nth-child(2) {
+                width: 340px;
+                height: 340px;
+                animation-delay: 1s;
+            }
+            .d-ring:nth-child(3) {
+                width: 500px;
+                height: 500px;
+                animation-delay: 2s;
+            }
+            .d-ring:nth-child(4) {
+                width: 680px;
+                height: 680px;
+                animation-delay: 3s;
+                border-color: rgba(255, 255, 255, 0.03);
+            }
+            @keyframes dRing {
+                0%,
+                100% {
+                    opacity: 0.5;
+                    transform: scale(1);
+                }
+                50% {
+                    opacity: 1;
+                    transform: scale(1.03);
+                }
+            }
+
+            .d-play {
+                width: 88px;
+                height: 88px;
+                border-radius: 50%;
+                background: var(--fire);
+                border: 3px solid rgba(255, 255, 255, 0.3);
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                font-size: 1.8rem;
+                position: relative;
+                z-index: 2;
+                cursor: pointer;
+                transition:
+                    transform 0.2s,
+                    background 0.2s,
+                    border-color 0.2s;
+                animation: dPulse 2.6s ease-in-out infinite;
+            }
+            .d-play:hover {
+                transform: scale(1.12);
+                background: #ff5022;
+                border-color: rgba(255, 255, 255, 0.5);
+            }
+            @keyframes dPulse {
+                0% {
+                    box-shadow: 0 0 0 0 rgba(255, 61, 0, 0.6);
+                }
+                70% {
+                    box-shadow: 0 0 0 30px rgba(255, 61, 0, 0);
+                }
+                100% {
+                    box-shadow: 0 0 0 0 rgba(255, 61, 0, 0);
+                }
+            }
+            .d-hint {
+                font-family: var(--ffm);
+                font-size: 0.68rem;
+                color: rgba(255, 255, 255, 0.25);
+                position: relative;
+                z-index: 2;
+                letter-spacing: 0.12em;
+                text-transform: uppercase;
+            }
+
+            /* pill strip */
+            .demo-pills {
+                display: flex;
+                justify-content: center;
+                gap: 0.55rem;
+                margin-top: 2.2rem;
+                flex-wrap: wrap;
+            }
+            .demo-pill {
+                font-family: var(--ffm);
+                font-size: 0.58rem;
+                font-weight: 700;
+                letter-spacing: 0.1em;
+                text-transform: uppercase;
+                padding: 0.42rem 1.1rem;
+                border-radius: 99px;
+                border: 2px solid var(--ink);
+                background: rgba(255, 255, 255, 0.5);
+                color: var(--ink);
+                backdrop-filter: blur(10px);
+                transition:
+                    background 0.18s,
+                    transform 0.18s,
+                    box-shadow 0.18s;
+                cursor: default;
+            }
+            .demo-pill:hover {
+                background: rgba(255, 255, 255, 0.85);
+                transform: translateY(-3px);
+                box-shadow: 3px 3px 0 var(--ink);
+            }
         </style>
     </head>
     <body>
@@ -1225,9 +1562,7 @@
                         <div class="htag">Offline First</div>
                     </div>
                     <div class="hero-btns">
-                        <a href="#demo" class="btn btn-fill" id="MAGBTN"
-                            >Watch Demo →</a
-                        >
+                        <a href="#demo" class="btn btn-fill">Watch Demo →</a>
                         <a href="#vision" class="btn btn-line">Our Vision</a>
                     </div>
                 </div>
@@ -1421,6 +1756,7 @@
                 </div>
             </div>
         </section>
+
         <div class="ticker">
             <div class="tick-t">
                 <span>DISCOVER EVENTS</span><span class="ts">✦</span>
@@ -1439,6 +1775,7 @@
                 ><span class="ts">✦</span>
             </div>
         </div>
+
         <div style="background: var(--w); line-height: 0; overflow: hidden">
             <svg
                 viewBox="0 0 1440 80"
@@ -1457,6 +1794,7 @@
                 />
             </svg>
         </div>
+
         <section
             id="vision"
             style="background: var(--w); padding: 4rem 2.5rem 6rem"
@@ -1466,9 +1804,7 @@
                 <div class="sec-h rv" style="margin-bottom: 3rem">
                     The problem is<br /><i>fragmentation.</i>
                 </div>
-
                 <div class="v-stats rv">
-                    <!-- CARD 1 -->
                     <div
                         class="vstat"
                         style="
@@ -1495,7 +1831,6 @@
                                 Disconnected platforms students navigate today
                             </div>
                         </div>
-
                         <svg
                             style="margin-left: 1.5rem; margin-top: 0.6rem"
                             width="65"
@@ -1528,8 +1863,6 @@
                             />
                         </svg>
                     </div>
-
-                    <!-- CARD 2 -->
                     <div
                         class="vstat"
                         style="
@@ -1556,7 +1889,6 @@
                                 Centralized place for every campus event
                             </div>
                         </div>
-
                         <svg
                             style="margin-left: 1.5rem; margin-top: 0.6rem"
                             width="65"
@@ -1583,8 +1915,6 @@
                             />
                         </svg>
                     </div>
-
-                    <!-- CARD 3 -->
                     <div
                         class="vstat"
                         style="
@@ -1611,7 +1941,6 @@
                                 Internet connection required to use the app
                             </div>
                         </div>
-
                         <svg
                             style="margin-left: 1.5rem; margin-top: 0.6rem"
                             width="65"
@@ -1644,7 +1973,6 @@
                         </svg>
                     </div>
                 </div>
-
                 <div class="vision-big rv">
                     <div class="vb-q">
                         "Campus events are <em>out there</em> — scattered across
@@ -1675,7 +2003,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="v-cards">
                     <div class="vc rv d1" style="background: #fff0ec">
                         <div class="vc-ill">
@@ -1800,7 +2127,6 @@
                         </ul>
                     </div>
                 </div>
-
                 <div class="roadmap rv d2">
                     <div class="rm-lbl">Future Features</div>
                     <div class="rm-items">
@@ -1813,6 +2139,7 @@
                 </div>
             </div>
         </section>
+
         <div
             style="
                 background: var(--w);
@@ -1832,6 +2159,7 @@
                 />
             </svg>
         </div>
+
         <section
             id="features"
             style="background: var(--off); padding: 2rem 2.5rem 6rem"
@@ -1846,7 +2174,6 @@
                         covered by unit, integration, and Espresso UI tests.
                     </p>
                 </div>
-
                 <div class="feat-grid">
                     <div class="fc rv d1" style="background: var(--violet)">
                         <div class="fc-ill">
@@ -1895,7 +2222,6 @@
                             access events
                         </div>
                     </div>
-
                     <div class="fc rv" style="background: var(--salmon)">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -1925,7 +2251,6 @@
                             features
                         </div>
                     </div>
-
                     <div class="fc rv d2" style="background: #fff">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -1967,7 +2292,6 @@
                             with certain details
                         </div>
                     </div>
-
                     <div class="fc rv d3" style="background: var(--teal)">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -2013,7 +2337,6 @@
                             Browse upcoming and past events in one place.
                         </div>
                     </div>
-
                     <div class="fc rv d4" style="background: var(--gold)">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -2060,7 +2383,6 @@
                             description.
                         </div>
                     </div>
-
                     <div class="fc rv d5" style="background: #ebe8ff">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -2092,13 +2414,12 @@
                             </svg>
                         </div>
                         <div class="fc-id">F-10</div>
-                        <div class="fc-nm">Edit & Remove Events</div>
+                        <div class="fc-nm">Edit &amp; Remove Events</div>
                         <div class="fc-ds">
                             Creators edit or delete their own events, Ownership
                             strictly enforced
                         </div>
                     </div>
-
                     <div class="fc rv" style="background: #edfaf6">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -2130,7 +2451,6 @@
                             participation
                         </div>
                     </div>
-
                     <div class="fc rv d1" style="background: #fff9ec">
                         <div class="fc-ill">
                             <svg width="70" height="65" viewBox="0 0 70 65">
@@ -2160,7 +2480,6 @@
                         </div>
                     </div>
                 </div>
-
                 <div
                     style="
                         margin-top: 1.5rem;
@@ -2211,7 +2530,7 @@
                                 color: var(--mid);
                             "
                         >
-                            F-08 · Filter & Sort Events
+                            F-08 · Filter &amp; Sort Events
                         </div>
                         <div
                             style="
@@ -2253,6 +2572,7 @@
                 </div>
             </div>
         </section>
+
         <div
             style="
                 background: var(--off);
@@ -2272,6 +2592,7 @@
                 />
             </svg>
         </div>
+
         <section
             id="architecture"
             style="background: var(--w); padding: 2rem 2.5rem 6rem"
@@ -2290,7 +2611,6 @@
                         interfaces, testable in complete isolation.
                     </p>
                 </div>
-
                 <div class="arch-img rv">
                     <div class="arch-img-lbl">
                         Group 6 — Architecture Diagram
@@ -2300,7 +2620,6 @@
                         alt="Campus Shenanigans Architecture Diagram"
                     />
                 </div>
-
                 <div class="layer-row rv">
                     <div class="lc" style="background: #fff0ec">
                         <div
@@ -2312,7 +2631,6 @@
                             Activities · Fragments · ViewModels · Presenters
                         </div>
                     </div>
-
                     <div class="lc" style="background: #eff1ff">
                         <div
                             class="lc-bar"
@@ -2324,7 +2642,6 @@
                             SessionManager
                         </div>
                     </div>
-
                     <div class="lc" style="background: #edfaf6">
                         <div
                             class="lc-bar"
@@ -2336,7 +2653,6 @@
                             Repositories
                         </div>
                     </div>
-
                     <div class="lc" style="background: #fff9ec">
                         <div
                             class="lc-bar"
@@ -2347,7 +2663,6 @@
                             SQLite · Stubs · Mappers · Schemas
                         </div>
                     </div>
-
                     <div class="lc" style="background: #f5f3ff">
                         <div class="lc-bar" style="background: #9b8fff"></div>
                         <div class="lc-nm">Application</div>
@@ -2357,11 +2672,9 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="arch-pair">
                     <div class="flow-card rv d1">
                         <h3>Data Flow — 5 Steps</h3>
-
                         <div class="fl-step">
                             <div
                                 class="fl-n"
@@ -2373,14 +2686,13 @@
                                 1
                             </div>
                             <div class="fl-t">
-                                <strong>User Action</strong>
-                                <span
+                                <strong>User Action</strong
+                                ><span
                                     >Presentation layer captures input and
                                     delegates requests to the logic layer.</span
                                 >
                             </div>
                         </div>
-
                         <div class="fl-step">
                             <div
                                 class="fl-n"
@@ -2392,15 +2704,14 @@
                                 2
                             </div>
                             <div class="fl-t">
-                                <strong>Business Logic</strong>
-                                <span
+                                <strong>Business Logic</strong
+                                ><span
                                     >Services apply validation rules,
                                     permissions, and business workflows
                                     independent of UI or storage.</span
                                 >
                             </div>
                         </div>
-
                         <div class="fl-step">
                             <div
                                 class="fl-n"
@@ -2412,14 +2723,13 @@
                                 3
                             </div>
                             <div class="fl-t">
-                                <strong>Data Access</strong>
-                                <span
+                                <strong>Data Access</strong
+                                ><span
                                     >Logic interacts with persistence through
                                     interfaces, ensuring loose coupling.</span
                                 >
                             </div>
                         </div>
-
                         <div class="fl-step">
                             <div
                                 class="fl-n"
@@ -2431,15 +2741,14 @@
                                 4
                             </div>
                             <div class="fl-t">
-                                <strong>Persistence Execution</strong>
-                                <span
+                                <strong>Persistence Execution</strong
+                                ><span
                                     >Concrete implementations (SQLite or stubs)
                                     perform CRUD operations and map data to
                                     domain models.</span
                                 >
                             </div>
                         </div>
-
                         <div class="fl-step" style="margin-bottom: 0">
                             <div
                                 class="fl-n"
@@ -2448,8 +2757,8 @@
                                 5
                             </div>
                             <div class="fl-t">
-                                <strong>UI Update</strong>
-                                <span
+                                <strong>UI Update</strong
+                                ><span
                                     >Processed results propagate back to the
                                     presentation layer, updating the UI
                                     state.</span
@@ -2457,7 +2766,6 @@
                             </div>
                         </div>
                     </div>
-
                     <div class="win-card rv d2">
                         <h3>Why This Works</h3>
                         <p>
@@ -2473,29 +2781,10 @@
                 </div>
             </div>
         </section>
+
         <div
             style="
                 background: var(--w);
-                margin-bottom: -1px;
-                line-height: 0;
-                overflow: hidden;
-            "
-        >
-            <svg
-                viewBox="0 0 1440 120"
-                preserveAspectRatio="none"
-                style="display: block; width: 100%; height: 120px"
-            >
-                <path
-                    d="M0,20 C180,100 400,0 600,60 C800,120 1000,10 1200,70 C1320,100 1400,30 1440,50 L1440,120 L0,120 Z"
-                    fill="var(--navy)"
-                />
-            </svg>
-        </div>
-        <section id="team"></section>
-        <div
-            style="
-                background: var(--navy);
                 margin-bottom: -1px;
                 line-height: 0;
                 overflow: hidden;
@@ -2507,12 +2796,60 @@
                 style="display: block; width: 100%; height: 100px"
             >
                 <path
-                    d="M0,50 C300,100 600,0 900,60 C1100,100 1300,20 1440,50 L1440,100 L0,100 Z"
+                    d="M0,30 C200,80 500,10 750,55 C1000,100 1250,20 1440,60 L1440,100 L0,100 Z"
                     fill="var(--teal)"
                 />
             </svg>
         </div>
-        <section id="demo"></section>
+
+        <section id="demo">
+            <div class="demo-wrap">
+                <div class="demo-header rv">
+                    <div class="demo-header-left">
+                        <div class="sec-lbl">See It In Action</div>
+                        <div class="sec-h">
+                            The demo<br /><i>walkthrough.</i>
+                        </div>
+                    </div>
+                    <div class="demo-eyebrow rv d2">
+                        One campus. One app.<br />
+                        Zero fragmentation · 100% Offline · All Events
+                    </div>
+                </div>
+
+                <div class="demo-stage rv d1">
+                    <div class="demo-device">
+                        <div class="demo-titlebar">
+                            <div class="dtc dtc-r"></div>
+                            <div class="dtc dtc-y"></div>
+                            <div class="dtc dtc-g"></div>
+                            <div class="dtc-spacer"></div>
+                            <span class="dtc-label"
+                                >Campus Shenanigans — Final Release</span
+                            >
+                            <div class="dtc-spacer"></div>
+                        </div>
+                        <div class="demo-canvas">
+                            <div class="d-ring"></div>
+                            <div class="d-ring"></div>
+                            <div class="d-ring"></div>
+                            <div class="d-ring"></div>
+                            <div class="d-play">▶</div>
+                            <div class="d-hint">screen recording here</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="demo-pills rv d2">
+                    <div class="demo-pill">No More Fragmentation</div>
+                    <div class="demo-pill">All Events · One Place</div>
+                    <div class="demo-pill">Academic · Social · Cultural</div>
+                    <div class="demo-pill">Offline First Experience</div>
+                    <div class="demo-pill">Fast · Simple · Reliable</div>
+                </div>
+            </div>
+        </section>
+
         <div
             style="
                 background: var(--teal);
@@ -2532,6 +2869,7 @@
                 />
             </svg>
         </div>
+
         <section
             id="postmortem"
             style="background: var(--w); padding: 2rem 2.5rem 6rem"
@@ -2554,7 +2892,6 @@
                     A candid look at architecture decisions, process strengths,
                     and what we'd do differently.
                 </p>
-
                 <div class="pm-stats rv">
                     <div class="pm-stat" style="background: #fff0ec">
                         <div class="pm-n" style="color: var(--salmon)">8</div>
@@ -2569,7 +2906,6 @@
                         <div class="pm-l">Tests Passing</div>
                     </div>
                 </div>
-
                 <div class="pm-pair rv">
                     <div class="pm-blk" style="background: #edfaf6">
                         <div class="pm-bh">
@@ -2592,7 +2928,6 @@
                         <ul class="pm-list"></ul>
                     </div>
                 </div>
-
                 <div class="pm-iter rv">
                     <div class="pm-iter-ghost">ITERATION 2</div>
                     <div class="pm-iter-tag">
@@ -2616,7 +2951,6 @@
                     </div>
                     <p><strong>Net outcome:</strong></p>
                 </div>
-
                 <div class="pm-3 rv">
                     <div class="pm-lesson" style="background: #fff0ec">
                         <svg
@@ -2724,6 +3058,9 @@
                 </div>
             </div>
         </section>
+
+        <section id="tech"></section>
+
         <div
             style="
                 background: var(--w);
@@ -2733,53 +3070,30 @@
             "
         >
             <svg
-                viewBox="0 0 1440 80"
+                viewBox="0 0 1440 120"
                 preserveAspectRatio="none"
-                style="display: block; width: 100%; height: 80px"
+                style="display: block; width: 100%; height: 120px"
             >
                 <path
-                    d="M0,10 C360,70 720,0 1080,55 C1260,80 1380,30 1440,50 L1440,80 L0,80 Z"
-                    fill="var(--off)"
-                />
-            </svg>
-        </div>
-        <section id="tech"></section>
-        <div
-            style="
-                background: var(--off);
-                margin-bottom: -1px;
-                line-height: 0;
-                overflow: hidden;
-            "
-        >
-            <svg
-                viewBox="0 0 1440 100"
-                preserveAspectRatio="none"
-                style="display: block; width: 100%; height: 100px"
-            >
-                <path
-                    d="M0,40 C300,100 700,0 1000,70 C1200,110 1360,20 1440,55 L1440,100 L0,100 Z"
+                    d="M0,20 C180,100 400,0 600,60 C800,120 1000,10 1200,70 C1320,100 1400,30 1440,50 L1440,120 L0,120 Z"
                     fill="var(--navy)"
                 />
             </svg>
         </div>
+        <section id="team"></section>
         <footer></footer>
+
         <script>
             const revealElements = document.querySelectorAll(".rv");
-
             const observer = new IntersectionObserver(
                 (entries) => {
                     entries.forEach((entry) => {
-                        if (entry.isIntersecting) {
+                        if (entry.isIntersecting)
                             entry.target.classList.add("in");
-                        }
                     });
                 },
-                {
-                    threshold: 0.1,
-                },
+                { threshold: 0.1 },
             );
-
             revealElements.forEach((el) => observer.observe(el));
         </script>
     </body>
