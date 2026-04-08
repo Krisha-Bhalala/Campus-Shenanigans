@@ -2321,112 +2321,118 @@
                 }
             }
 
+            /* ── Portrait cards ── */
             .portraits-wrap {
-                background: #060e1a;
-                padding: 4rem 2rem 5rem;
-                position: relative;
-                overflow: hidden;
+                max-width: 1400px;
+                margin: 0 auto;
+                padding: 0 40px;
             }
-            .portraits-wrap::before {
-                content: "";
-                position: absolute;
-                inset: 0;
-                pointer-events: none;
-                background: radial-gradient(
-                    ellipse at 50% 0%,
-                    rgba(20, 60, 100, 0.4),
-                    transparent 60%
-                );
-            }
-            .portraits-eyebrow {
-                font-family: var(--ffm);
-                font-size: 0.63rem;
-                font-weight: 700;
-                letter-spacing: 0.22em;
-                text-transform: uppercase;
-                color: rgba(180, 130, 60, 0.4);
-                text-align: center;
-                margin-bottom: 3rem;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                gap: 0.8rem;
-            }
-            .portraits-eyebrow::before,
-            .portraits-eyebrow::after {
-                content: "";
-                flex: 1;
-                height: 1px;
-                background: rgba(180, 130, 60, 0.15);
-            }
+
             .portraits-grid {
                 display: grid;
-                grid-template-columns: repeat(5, 1fr);
-                gap: 1rem;
-                max-width: var(--max);
-                margin: 0 auto;
+                /* We use 6 columns to allow for easy centering math */
+                grid-template-columns: repeat(6, 1fr);
+                gap: 28px;
             }
 
             .portrait-card {
-                border: 1px solid rgba(180, 130, 60, 0.15);
-                border-radius: 4px;
-                padding: 1.4rem 1.1rem;
-                background: rgba(255, 255, 255, 0.03);
-                transition:
-                    border-color 0.25s,
-                    background 0.25s,
-                    transform 0.25s;
-                text-align: center;
+                padding: 32px 28px;
+                display: flex;
+                flex-direction: column;
+                gap: 16px;
+                border-radius: 12px;
+                min-height: 420px;
+                background: rgba(
+                    255,
+                    255,
+                    255,
+                    0.05
+                ); /* Added for visibility */
             }
-            .portrait-card:hover {
-                border-color: rgba(180, 130, 60, 0.38);
-                background: rgba(255, 255, 255, 0.055);
-                transform: translateY(-4px);
-            }
+
             .portrait-name {
-                font-family: var(--ffs);
-                font-size: 0.95rem;
+                font-size: 22px;
                 font-weight: 700;
-                color: rgba(220, 180, 80, 0.9);
-                margin-bottom: 0.5rem;
+                text-align: center;
+                letter-spacing: 0.02em;
+                margin-bottom: 4px;
             }
+
             .portrait-desc {
-                font-size: 0.76rem;
-                line-height: 1.65;
-                color: rgba(180, 160, 120, 0.5);
-                margin-bottom: 0.8rem;
+                font-size: 15px;
+                line-height: 1.85;
+                text-align: left;
+                color: rgba(255, 255, 255, 0.82);
+                flex: 1;
             }
+
             .portrait-sks {
                 display: flex;
                 flex-wrap: wrap;
-                gap: 0.3rem;
-                justify-content: center;
+                gap: 8px;
+                margin-top: auto;
+                padding-top: 8px;
             }
+
             .portrait-sk {
-                font-family: var(--ffm);
-                font-size: 0.55rem;
-                padding: 0.15rem 0.45rem;
-                border-radius: 2px;
-                background: rgba(180, 130, 60, 0.08);
-                border: 1px solid rgba(180, 130, 60, 0.18);
-                color: rgba(180, 130, 60, 0.6);
-                letter-spacing: 0.06em;
-                transition:
-                    background 0.2s,
-                    color 0.2s;
+                font-size: 12px;
+                padding: 5px 14px;
+                border-radius: 20px;
+                letter-spacing: 0.03em;
+                border: 1px solid rgba(255, 255, 255, 0.2);
             }
-            .portrait-card:hover .portrait-sk {
-                background: rgba(180, 130, 60, 0.15);
-                color: rgba(210, 160, 70, 0.9);
+
+            .portraits-eyebrow {
+                font-size: 20px;
+                font-weight: 80;
+                text-align: center;
+                margin-bottom: 50px;
+                letter-spacing: 0.05em;
+                text-transform: uppercase;
+                color: #ffffff;
             }
+
+            /* --- GRID POSITIONING --- */
+
+            /* Top Row (3 Cards): Each takes 2 of the 6 columns */
+            .portraits-grid .portrait-card:nth-child(1) {
+                grid-column: 1 / 3;
+            }
+            .portraits-grid .portrait-card:nth-child(2) {
+                grid-column: 3 / 5;
+            }
+            .portraits-grid .portrait-card:nth-child(3) {
+                grid-column: 5 / 7;
+            }
+
+            /* Bottom Row (2 Cards): Offset by 1 column to center them */
+            .portraits-grid .portrait-card:nth-child(4) {
+                grid-column: 2 / 4;
+                margin: 0; /* REMOVED: The calc() margin was causing the misalignment */
+                width: 100%;
+            }
+
+            .portraits-grid .portrait-card:nth-child(5) {
+                grid-column: 4 / 6;
+            }
+
+            /* ── Tablet (2 per row) ── */
             @media (max-width: 900px) {
                 .portraits-grid {
-                    grid-template-columns: repeat(3, 1fr);
+                    grid-template-columns: repeat(2, 1fr);
+                }
+                .portraits-grid .portrait-card {
+                    grid-column: span 1 !important;
                 }
             }
+
+            /* ── Mobile (1 per row) ── */
             @media (max-width: 560px) {
                 .portraits-grid {
-                    grid-template-columns: repeat(2, 1fr);
+                    grid-template-columns: 1fr;
+                }
+                .portraits-wrap {
+                    padding: 0 16px;
                 }
             }
         </style>
@@ -2466,16 +2472,17 @@
                             </svg>
                         </span>
                     </div>
+
                     <p class="hero-desc">
-                        Every campus event you've ever missed lived on five
-                        different websites. One app. Academic, social, cultural,
-                        recreational. 100% offline.
+                        One centralized hub for every campus event — academic,
+                        social, and recreational. Discover, save, and never miss
+                        what matters. 100% offline.
                     </p>
                     <div class="hero-tags">
                         <div class="htag">Academic</div>
                         <div class="htag">Social</div>
-                        <div class="htag">Cultural</div>
                         <div class="htag">Recreational</div>
+                        <div class="htag">Favorites</div>
                         <div class="htag">Offline First</div>
                     </div>
                     <div class="hero-btns">
@@ -2677,14 +2684,14 @@
         <div class="ticker">
             <div class="tick-t">
                 <span>DISCOVER EVENTS</span><span class="ts">✦</span>
-                <span>ACADEMIC · SOCIAL · CULTURAL · RECREATIONAL</span
+                <span>ACADEMIC · SOCIAL · RECREATIONAL</span
                 ><span class="ts">✦</span> <span>100% OFFLINE</span
                 ><span class="ts">✦</span> <span>ZERO FRAGMENTATION</span
                 ><span class="ts">✦</span> <span>ONE CAMPUS · ONE APP</span
                 ><span class="ts">✦</span> <span>CAMPUS SHENANIGANS</span
                 ><span class="ts">✦</span> <span>DISCOVER EVENTS</span
                 ><span class="ts">✦</span>
-                <span>ACADEMIC · SOCIAL · CULTURAL · RECREATIONAL</span
+                <span>ACADEMIC · SOCIAL · RECREATIONAL</span
                 ><span class="ts">✦</span> <span>100% OFFLINE</span
                 ><span class="ts">✦</span> <span>ZERO FRAGMENTATION</span
                 ><span class="ts">✦</span> <span>ONE CAMPUS · ONE APP</span
@@ -2745,8 +2752,10 @@
                             <div class="vs-num" style="color: var(--salmon)">
                                 5+
                             </div>
+
                             <div class="vs-lbl">
-                                Disconnected platforms students navigate today
+                                Disconnected websites &amp; bulletin boards
+                                students navigate today
                             </div>
                         </div>
                         <svg
@@ -2803,8 +2812,10 @@
                             <div class="vs-num" style="color: var(--teal)">
                                 1
                             </div>
+
                             <div class="vs-lbl">
-                                Centralized place for every campus event
+                                Reliable hub for all academic, social, and
+                                recreational events
                             </div>
                         </div>
                         <svg
@@ -2891,32 +2902,38 @@
                         </svg>
                     </div>
                 </div>
+
                 <div class="vision-big rv">
                     <div class="vb-q">
-                        "Campus events are <em>out there</em> — scattered across
-                        websites nobody bookmarks, emails nobody reads, and
-                        bulletin boards nobody passes twice."
+                        "Students miss out on valuable opportunities because
+                        event information is <em>scattered</em> across dozens of
+                        disconnected websites and bulletin boards — not because
+                        they don't care."
                     </div>
                     <div class="vb-pts">
                         <div class="vbp">
                             <h4>Fragmentation, not shortage</h4>
                             <p>
-                                Students miss events because information is
-                                scattered not because they don't care.
+                                Campus Shenanigans solves this by providing a
+                                single, dependable hub for the entire university
+                                community.
                             </p>
                         </div>
                         <div class="vbp">
                             <h4>Offline first, by design</h4>
                             <p>
-                                All data stored locally. No internet needed.
-                                Your data never leaves your phone.
+                                Whether you're between classes or in a basement
+                                lab with no reception, you have instant,
+                                reliable access to everything happening on
+                                campus.
                             </p>
                         </div>
                         <div class="vbp">
-                            <h4>Every event type. One place.</h4>
+                            <h4>Curate what matters to you</h4>
                             <p>
-                                Academic, social, cultural, recreational -
-                                title, date, time, location, cost.
+                                Browse the latest activities and build a
+                                personal list of favorites so you never miss an
+                                event that matters to you.
                             </p>
                         </div>
                     </div>
@@ -2958,6 +2975,7 @@
                             </svg>
                         </div>
                         <div class="vc-t">Intended Users</div>
+
                         <div class="tag-row">
                             <span class="tag">Students</span
                             ><span class="tag">Faculty</span
@@ -2965,9 +2983,10 @@
                             ><span class="tag">Event Admins</span>
                         </div>
                         <p style="margin-top: 0.9rem">
-                            Anyone who wants one reliable place for campus
-                            events and authorized organizers who create and
-                            manage them.
+                            Designed for students, teachers, and staff who want
+                            to know what's happening on campus without searching
+                            everywhere. A limited admin role supports authorized
+                            event organizers.
                         </p>
                     </div>
                     <div class="vc rv d2" style="background: #eff1ff">
@@ -2984,11 +3003,15 @@
                             </svg>
                         </div>
                         <div class="vc-t">Core Value</div>
+
                         <p>
-                            Unlike existing platforms that scatter events across
-                            multiple services, Campus Shenanigans centralizes
-                            everything into one fast, offline capable, privacy
-                            first application.
+                            This app bridges the gap between event organizers
+                            and the student body. Right now, campus news is
+                            spread across emails, posters, and different
+                            websites — it's easy to miss a great event. Campus
+                            Shenanigans reduces information overload and ensures
+                            every workshop and social club has the visibility it
+                            deserves.
                         </p>
                     </div>
                     <div class="vc rv d3" style="background: #edfaf6">
@@ -3024,23 +3047,27 @@
                             </svg>
                         </div>
                         <div class="vc-t">Success Criteria</div>
+
                         <ul class="chk-ul">
                             <li>
                                 <div class="chk-ic">✓</div>
-                                Users reliably discover and browse campus events
+                                75%+ of surveyed students prefer the app over
+                                checking multiple websites
                             </li>
                             <li>
                                 <div class="chk-ic">✓</div>
-                                Data persists correctly across app restarts
+                                60%+ of users attend at least one new event
+                                discovered through the app
                             </li>
                             <li>
                                 <div class="chk-ic">✓</div>
-                                Only authorized admins create, edit, or delete
-                                events
+                                An organizer can add a new event in under two
+                                minutes without a manual
                             </li>
                             <li>
                                 <div class="chk-ic">✓</div>
-                                Students prefer the app within one semester
+                                60%+ of users report increased campus engagement
+                                through the app
                             </li>
                         </ul>
                     </div>
@@ -3252,8 +3279,10 @@
                         </div>
                         <div class="fc-id">F-01</div>
                         <div class="fc-nm">Event Listing</div>
+
                         <div class="fc-ds">
-                            Browse upcoming and past events in one place.
+                            Browse a complete list of both upcoming and past
+                            campus events in one place.
                         </div>
                     </div>
                     <div class="fc rv d4" style="background: var(--gold)">
@@ -3297,9 +3326,10 @@
                         </div>
                         <div class="fc-id">F-02</div>
                         <div class="fc-nm">Event Details</div>
+
                         <div class="fc-ds">
-                            View key details like time, date, location, and
-                            description.
+                            View all key details for any event — time, date,
+                            location, and description in one place.
                         </div>
                     </div>
                     <div class="fc rv d5" style="background: #ebe8ff">
@@ -3335,8 +3365,8 @@
                         <div class="fc-id">F-10</div>
                         <div class="fc-nm">Edit &amp; Remove Events</div>
                         <div class="fc-ds">
-                            Creators edit or delete their own events, Ownership
-                            strictly enforced
+                            Creators edit or delete their own events. Ownership
+                            strictly enforced.
                         </div>
                     </div>
                     <div class="fc rv" style="background: #edfaf6">
@@ -3361,13 +3391,36 @@
                                     stroke-linecap="round"
                                     stroke-linejoin="round"
                                 />
+                                <circle
+                                    cx="52"
+                                    cy="18"
+                                    r="6"
+                                    fill="var(--teal)"
+                                    opacity=".5"
+                                    stroke="var(--ink)"
+                                    stroke-width="1.5"
+                                />
+                                <text
+                                    x="52"
+                                    y="22"
+                                    text-anchor="middle"
+                                    font-size="7"
+                                    fill="var(--ink)"
+                                    font-weight="700"
+                                >
+                                    12
+                                </text>
                             </svg>
                         </div>
                         <div class="fc-id">F-09</div>
-                        <div class="fc-nm">Mark Attendance</div>
+                        <div class="fc-nm">
+                            Event Engagement &amp; Attendance
+                        </div>
+
                         <div class="fc-ds">
-                            Mark events as "Attending" or "Interested" to track
-                            participation
+                            Join events, view a live attendee count, manage your
+                            "Going" status, and let admins track confirmed
+                            turnout for room planning.
                         </div>
                     </div>
                     <div class="fc rv d1" style="background: #fff9ec">
@@ -3392,10 +3445,12 @@
                             </svg>
                         </div>
                         <div class="fc-id">F-11</div>
-                        <div class="fc-nm">View Saved Events</div>
+                        <div class="fc-nm">Personal Event Collections</div>
+
                         <div class="fc-ds">
-                            View only events marked as attending or interested
-                            in one list
+                            Bookmark events and access all saved events in
+                            Favorites hub, and un-favorite anything once it's
+                            over or no longer relevant.
                         </div>
                     </div>
                 </div>
@@ -3536,7 +3591,7 @@
                         Group 6 — Architecture Diagram
                     </div>
                     <img
-                        src="../docs/Architecture Diagram.jpg"
+                        src="Architecture Diagram.png"
                         alt="Campus Shenanigans Architecture Diagram"
                     />
                 </div>
@@ -3548,7 +3603,8 @@
                         ></div>
                         <div class="lc-nm">Presentation</div>
                         <div class="lc-pkg">
-                            Activities · Fragments · ViewModels · Presenters
+                            AuthScreen · EventDetailsScreen · ViewModels ·
+                            Presenters
                         </div>
                     </div>
                     <div class="lc" style="background: #eff1ff">
@@ -3558,8 +3614,8 @@
                         ></div>
                         <div class="lc-nm">Logic</div>
                         <div class="lc-pkg">
-                            AuthService · EventService · Validators ·
-                            SessionManager
+                            AuthService · EventService · PermissionManager ·
+                            Validators
                         </div>
                     </div>
                     <div class="lc" style="background: #edfaf6">
@@ -3567,10 +3623,9 @@
                             class="lc-bar"
                             style="background: var(--teal)"
                         ></div>
-                        <div class="lc-nm">Data Layer</div>
+                        <div class="lc-nm">Domain Objects</div>
                         <div class="lc-pkg">
-                            Domain Models · Persistence Interfaces ·
-                            Repositories
+                            Event · User · EventRecord · Location · Role
                         </div>
                     </div>
                     <div class="lc" style="background: #fff9ec">
@@ -3580,15 +3635,15 @@
                         ></div>
                         <div class="lc-nm">Persistence</div>
                         <div class="lc-pkg">
-                            SQLite · Stubs · Mappers · Schemas
+                            SQLite · Stubs · Mappers · Table Definitions
                         </div>
                     </div>
                     <div class="lc" style="background: #f5f3ff">
                         <div class="lc-bar" style="background: #9b8fff"></div>
                         <div class="lc-nm">Application</div>
                         <div class="lc-pkg">
-                            CampusShenanigans · ServiceContainer ·
-                            PersistenceContainer
+                            CampusShenanigans · DatabaseSeeder · Dependency
+                            Containers
                         </div>
                     </div>
                 </div>
@@ -3626,9 +3681,9 @@
                             <div class="fl-t">
                                 <strong>Business Logic</strong
                                 ><span
-                                    >Services apply validation rules,
-                                    permissions, and business workflows
-                                    independent of UI or storage.</span
+                                    >AuthService and EventService process
+                                    requests using validation rules and
+                                    permissions.</span
                                 >
                             </div>
                         </div>
@@ -3643,14 +3698,15 @@
                                 3
                             </div>
                             <div class="fl-t">
-                                <strong>Data Access</strong
+                                <strong>Interface Communication</strong
                                 ><span
-                                    >Logic interacts with persistence through
-                                    interfaces, ensuring loose coupling.</span
+                                    >Logic interacts with Persistence through
+                                    interfaces (e.g., EventDataPersistence) to
+                                    maintain decoupling.</span
                                 >
                             </div>
                         </div>
-                        <div class="fl-step">
+                        <div class="fl-step" style="margin-bottom: 0">
                             <div
                                 class="fl-n"
                                 style="
@@ -3661,11 +3717,10 @@
                                 4
                             </div>
                             <div class="fl-t">
-                                <strong>Persistence Execution</strong
+                                <strong>Persistence Implementation</strong
                                 ><span
-                                    >Concrete implementations (SQLite or stubs)
-                                    perform CRUD operations and map data to
-                                    domain models.</span
+                                    >Concrete implementations (SQLite or Stubs)
+                                    map database rows to Domain Objects.</span
                                 >
                             </div>
                         </div>
@@ -3764,7 +3819,9 @@
                 <div class="demo-pills rv d2">
                     <div class="demo-pill">No More Fragmentation</div>
                     <div class="demo-pill">All Events · One Place</div>
-                    <div class="demo-pill">Academic · Social · Cultural</div>
+                    <div class="demo-pill">
+                        Academic · Social · Recreational
+                    </div>
                     <div class="demo-pill">Offline First Experience</div>
                     <div class="demo-pill">Fast · Simple · Reliable</div>
                 </div>
@@ -3812,12 +3869,13 @@
                     "
                 >
                     A candid look at architecture decisions, process strengths,
-                    and what we'd do differently.
+                    and the lessons that shaped our final release.
                 </p>
+
                 <div class="pm-stats rv">
                     <div class="pm-stat" style="background: #fff0ec">
                         <div class="pm-n" style="color: var(--salmon)">8</div>
-                        <div class="pm-l">Features Shipped</div>
+                        <div class="pm-l">Features</div>
                     </div>
                     <div class="pm-stat" style="background: #eff1ff">
                         <div class="pm-n" style="color: var(--violet)">5</div>
@@ -3828,6 +3886,7 @@
                         <div class="pm-l">Tests Passing</div>
                     </div>
                 </div>
+
                 <div class="pm-pair rv">
                     <div class="pm-blk" style="background: #edfaf6">
                         <div class="pm-bh">
@@ -3837,7 +3896,22 @@
                             ></div>
                             What Went Well
                         </div>
-                        <ul class="pm-list"></ul>
+                        <ul class="pm-list">
+                            <li>
+                                We constantly evaluated our code for SOLID
+                                violations and design smells. This proactive
+                                approach prevented "technical debt" from piling
+                                up, ensuring we didn't have to rewrite huge
+                                chunks of logic every time we added a feature.
+                            </li>
+                            <li>
+                                We maintained 100% pass rates across Unit,
+                                Mockito, Integration, and E2E tests. This safety
+                                net allowed us to refactor with confidence,
+                                knowing that existing functionality remained
+                                unbroken.
+                            </li>
+                        </ul>
                     </div>
                     <div class="pm-blk" style="background: #fff0ec">
                         <div class="pm-bh">
@@ -3847,32 +3921,78 @@
                             ></div>
                             What Was Challenging
                         </div>
-                        <ul class="pm-list"></ul>
+                        <ul class="pm-list">
+                            <li>
+                                Early on, a large Service.java class began
+                                handling too many responsibilities across
+                                multiple layers. It took significant effort to
+                                untangle this "God Object" and redistribute its
+                                logic without breaking the system.
+                            </li>
+                            <li>
+                                In early iterations, we relied heavily on Google
+                                Docs for coordination rather than GitLab Issues.
+                                This led to gaps in our official project history
+                                and made it difficult to accurately estimate our
+                                team's velocity.
+                            </li>
+                        </ul>
                     </div>
                 </div>
+
                 <div class="pm-iter rv">
-                    <div class="pm-iter-ghost">ITERATION 2</div>
+                    <div class="pm-iter-ghost">ITERATION 2 RETRO</div>
                     <div class="pm-iter-tag">
                         Improvement Area · Identified After Iteration 2
-                        Retrospective
                     </div>
-                    <h3>what found? heading</h3>
+                    <h3>Eliminating Redundant Effort Through Ownership</h3>
                     <div class="iter-tl">
                         <div class="it">
                             <div class="it-lbl">What We Found</div>
-                            <p></p>
+                            <p>
+                                Due to a lack of centralized task tracking, two
+                                members unknowingly spent nearly 20 hours
+                                building the exact same administrative
+                                permission logic in isolated branches. We were
+                                forced to discard an entire branch's work during
+                                the merge, effectively cutting our team's
+                                productive capacity in half for that iteration.
+                            </p>
                         </div>
                         <div class="it">
                             <div class="it-lbl">What Changed</div>
-                            <p></p>
+                            <p>
+                                We moved 100% of tasks into GitLab Issues with a
+                                "No Claim, No Code" rule. We also implemented
+                                <strong>Domain Separation</strong>: we split the
+                                remaining features (Attendance & Favorites) into
+                                distinct layers where one member owned the
+                                Database/Logic while the other owned the UI,
+                                treating each other's files as "locked" to
+                                prevent overlaps.
+                            </p>
                         </div>
                         <div class="it">
                             <div class="it-lbl">Evidence It Worked</div>
-                            <p></p>
+                            <p>
+                                Iteration 3 saw
+                                <strong>zero redundant work</strong>. Every
+                                GitLab Issue traced directly to a single Merge
+                                Request. Because there were no competing logic
+                                blocks, merge conflicts were almost entirely
+                                eliminated, and final integration took minutes
+                                instead of hours.
+                            </p>
                         </div>
                     </div>
-                    <p><strong>Net outcome:</strong></p>
+                    <p>
+                        <strong>Net outcome:</strong> Transitioning to a
+                        structured, issue-driven workflow recovered our full
+                        development capacity and resulted in a conflict-free
+                        final release.
+                    </p>
                 </div>
+
                 <div class="pm-3 rv">
                     <div class="pm-lesson" style="background: #fff0ec">
                         <svg
@@ -3902,7 +4022,13 @@
                             />
                         </svg>
                         <h3>Architecture Lesson</h3>
-                        <p>.</p>
+                        <p>
+                            Design for the current need but stay open for
+                            growth. Our 5-layer split meant that swapping
+                            temporary stub data for a real SQLite database
+                            required zero changes to our UI or Business logic
+                            layers.
+                        </p>
                     </div>
                     <div class="pm-lesson" style="background: #eff1ff">
                         <svg
@@ -3932,7 +4058,13 @@
                             <circle cx="25" cy="33" r="2" fill="var(--ink)" />
                         </svg>
                         <h3>Process Lesson</h3>
-                        <p>.</p>
+                        <p>
+                            Keep feature branches short-lived and narrowly
+                            focused. If you see something else that needs
+                            fixing, open a separate issue. Mixing multiple fixes
+                            in one branch is a reliable recipe for merge
+                            conflicts and lost work.
+                        </p>
                     </div>
                     <div class="pm-lesson" style="background: #edfaf6">
                         <svg
@@ -3975,7 +4107,13 @@
                             />
                         </svg>
                         <h3>Teamwork Lesson</h3>
-                        <p>.</p>
+                        <p>
+                            Constant communication is your real-time project
+                            tracker. Sharing availability allowed us to
+                            redistribute tasks proactively before deadlines and
+                            ensured that no part of the codebase became a "blind
+                            spot" for the team.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -3993,7 +4131,7 @@
                 <div class="tech-grid">
                     <div class="rv">
                         <div class="dep-g">
-                            <div class="dep-gh">Build Tools</div>
+                            <div class="dep-gh">Build Tools & SDK</div>
                             <div class="dep-r">
                                 <span class="dn">Android Gradle Plugin</span
                                 ><span class="dv">9.0.0</span>
@@ -4003,18 +4141,11 @@
                                 ><span class="dv">9.1.0</span>
                             </div>
                             <div class="dep-r">
-                                <span class="dn">Java</span
+                                <span class="dn">Java Version</span
                                 ><span class="dv">17</span>
                             </div>
-                        </div>
-                        <div class="dep-g">
-                            <div class="dep-gh">Android SDK</div>
                             <div class="dep-r">
-                                <span class="dn">Compile SDK</span
-                                ><span class="dv">34</span>
-                            </div>
-                            <div class="dep-r">
-                                <span class="dn">Target SDK</span
+                                <span class="dn">Compile / Target SDK</span
                                 ><span class="dv">34</span>
                             </div>
                             <div class="dep-r">
@@ -4022,11 +4153,11 @@
                                 ><span class="dv">26</span>
                             </div>
                         </div>
+
                         <div class="dep-g">
                             <div class="dep-gh">Runtime Dependencies</div>
                             <div class="dep-r">
-                                <span class="dn"
-                                    >androidx.appcompat:appcompat</span
+                                <span class="dn">androidx.appcompat</span
                                 ><span class="dv">1.6.1</span>
                             </div>
                             <div class="dep-r">
@@ -4035,8 +4166,7 @@
                                 ><span class="dv">1.13.0</span>
                             </div>
                             <div class="dep-r">
-                                <span class="dn"
-                                    >androidx.activity:activity</span
+                                <span class="dn">androidx.activity</span
                                 ><span class="dv">1.8.0</span>
                             </div>
                             <div class="dep-r">
@@ -4044,60 +4174,42 @@
                                 ><span class="dv">2.1.4</span>
                             </div>
                         </div>
+
                         <div class="dep-g">
-                            <div class="dep-gh">Testing</div>
+                            <div class="dep-gh">Testing Suite</div>
                             <div class="dep-r">
-                                <span class="dn">junit:junit</span
+                                <span class="dn">JUnit</span
                                 ><span class="dv">4.13.2</span>
                             </div>
                             <div class="dep-r">
-                                <span class="dn">mockito-core</span
+                                <span class="dn">Mockito Core</span
                                 ><span class="dv">5.11.0</span>
                             </div>
                             <div class="dep-r">
-                                <span class="dn">espresso-core</span
+                                <span class="dn">Espresso Core / Contrib</span
                                 ><span class="dv">3.7.0</span>
                             </div>
                             <div class="dep-r">
-                                <span class="dn">androidx.test.ext:junit</span
+                                <span class="dn">AndroidX Test Ext</span
                                 ><span class="dv">1.1.5</span>
                             </div>
                         </div>
                     </div>
+
                     <div class="setup-box rv d2">
-                        <h3>How to Run</h3>
+                        <h3>Project Setup</h3>
                         <div class="stp">
                             <div class="stn">1</div>
                             <div class="stt">
-                                <h5>Open in Android Studio</h5>
+                                <h5>Sync & Run</h5>
                                 <p>
-                                    Open an Existing Project → navigate to
-                                    project directory → OK.
+                                    Open in Android Studio. Recommended
+                                    Emulator: Pixel 9 (API 35).
                                 </p>
                             </div>
                         </div>
                         <div class="stp">
                             <div class="stn">2</div>
-                            <div class="stt">
-                                <h5>Gradle Sync</h5>
-                                <p>
-                                    Android Studio syncs automatically. First
-                                    build may take 2–3 minutes.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="stp">
-                            <div class="stn">3</div>
-                            <div class="stt">
-                                <h5>Select Emulator</h5>
-                                <p>
-                                    Recommended: Pixel 9, API 35. Minimum: Pixel
-                                    device, API 34.
-                                </p>
-                            </div>
-                        </div>
-                        <div class="stp">
-                            <div class="stn">4</div>
                             <div class="stt">
                                 <h5>Unit Tests</h5>
                                 <p>
@@ -4106,38 +4218,61 @@
                             </div>
                         </div>
                         <div class="stp">
-                            <div class="stn">5</div>
+                            <div class="stn">3</div>
                             <div class="stt">
                                 <h5>Integration Tests</h5>
                                 <p>
                                     <code
-                                        >./gradlew app:connectedDebugAndroidTest
-                                        -P...AllIntegrationTests</code
+                                        >./gradlew
+                                        app:connectedDebugAndroidTest...AllIntegrationTests</code
                                     >
                                 </p>
                             </div>
                         </div>
+                        <div class="stp">
+                            <div class="stn">4</div>
+                            <div class="stt">
+                                <h5>E2E (Espresso)</h5>
+                                <p>
+                                    <code
+                                        >./gradlew
+                                        connectedAndroidTest...AllE2ETests</code
+                                    >
+                                </p>
+                            </div>
+                        </div>
+
                         <div class="creds">
                             <div class="cred">
                                 <div
                                     class="cred-r"
                                     style="color: var(--salmon)"
                                 >
-                                    Admin
+                                    Admin User
                                 </div>
-                                <p>user: <code>admin</code></p>
-                                <p>pass: <code>adminpass123</code></p>
+                                <p><code>admin1</code></p>
+                                <p><code>password123</code></p>
                             </div>
                             <div class="cred">
                                 <div
                                     class="cred-r"
                                     style="color: var(--violet)"
                                 >
-                                    Attendee
+                                    Attendee User
                                 </div>
-                                <p>user: <code>attendee</code></p>
-                                <p>pass: <code>password123</code></p>
+                                <p><code>student1</code></p>
+                                <p><code>password123</code></p>
                             </div>
+                        </div>
+                        <div
+                            style="
+                                margin-top: 1.5rem;
+                                font-size: 0.85rem;
+                                opacity: 0.7;
+                                font-style: italic;
+                            "
+                        >
+                            * All tests passed on real database implementation.
                         </div>
                     </div>
                 </div>
@@ -4758,7 +4893,6 @@
                                 stroke="rgba(180,150,70,.08)"
                                 stroke-width=".7"
                             />
-                            <!-- corner ornament lines -->
                             <line
                                 x1="10"
                                 y1="50"
@@ -4910,7 +5044,6 @@
                                 d="M26,26 C72,22 138,34 178,62 C206,80 190,114 168,140 C144,168 106,178 74,166 C42,154 24,126 22,88 C18,58 21,36 26,26 Z"
                                 fill="rgba(55,105,65,.07)"
                             />
-                            <!-- tree dots on land -->
                             <circle
                                 cx="65"
                                 cy="70"
@@ -4971,7 +5104,6 @@
                                 fill="rgba(55,105,65,.2)"
                             />
 
-                            <!-- small islands -->
                             <ellipse
                                 cx="420"
                                 cy="640"
@@ -5013,7 +5145,6 @@
                                 stroke="rgba(150,120,60,.26)"
                                 stroke-width=".7"
                             />
-                            <!-- starting island -->
                             <ellipse
                                 cx="175"
                                 cy="490"
@@ -5087,11 +5218,7 @@
                                 stroke-width="4"
                             />
 
-                            <!-- ── WAYPOINT HELPER: reusable island shape macro ── -->
-
-                            <!-- ══════════════════════════════════════════
-                         WAYPOINT 0 — ITERATION ZERO
-                    ══════════════════════════════════════════ -->
+                            <!-- WAYPOINT 0 -->
                             <circle
                                 cx="175"
                                 cy="490"
@@ -5108,7 +5235,6 @@
                                 filter="url(#glow)"
                             />
                             <circle cx="175" cy="490" r="3.5" fill="#FFFAEC" />
-                            <!-- pulse ring -->
                             <circle
                                 cx="175"
                                 cy="490"
@@ -5118,8 +5244,6 @@
                                 stroke-width="1"
                                 stroke-dasharray="4 3"
                             />
-
-                            <!-- card — bottom right of point -->
                             <rect
                                 x="30"
                                 y="520"
@@ -5140,7 +5264,6 @@
                                 stroke="rgba(180,150,70,.07)"
                                 stroke-width=".5"
                             />
-                            <!-- header bar -->
                             <rect
                                 x="30"
                                 y="520"
@@ -5176,7 +5299,6 @@
                                 stroke="rgba(180,150,70,.16)"
                                 stroke-width=".5"
                             />
-                            <!-- number badge -->
                             <circle
                                 cx="52"
                                 cy="558"
@@ -5269,7 +5391,6 @@
                             >
                                 · Tech stack confirmed
                             </text>
-                            <!-- connector -->
                             <line
                                 x1="175"
                                 y1="497"
@@ -5280,9 +5401,7 @@
                                 stroke-dasharray="3 2"
                             />
 
-                            <!-- ══════════════════════════════════════════
-                         WAYPOINT 1 — ITERATION 1
-                    ══════════════════════════════════════════ -->
+                            <!-- WAYPOINT 1 -->
                             <circle
                                 cx="432"
                                 cy="550"
@@ -5308,8 +5427,6 @@
                                 stroke-width="1"
                                 stroke-dasharray="4 3"
                             />
-
-                            <!-- card — above -->
                             <rect
                                 x="290"
                                 y="370"
@@ -5466,7 +5583,6 @@
                             >
                                 · Business logic layer built
                             </text>
-                            <!-- connector -->
                             <line
                                 x1="432"
                                 y1="543"
@@ -5477,9 +5593,7 @@
                                 stroke-dasharray="3 2"
                             />
 
-                            <!-- ══════════════════════════════════════════
-                         WAYPOINT 2 — ITERATION 2
-                    ══════════════════════════════════════════ -->
+                            <!-- WAYPOINT 2 -->
                             <circle
                                 cx="650"
                                 cy="445"
@@ -5505,8 +5619,6 @@
                                 stroke-width="1"
                                 stroke-dasharray="4 3"
                             />
-
-                            <!-- card — above left -->
                             <rect
                                 x="480"
                                 y="220"
@@ -5663,7 +5775,6 @@
                             >
                                 · Integration tests added
                             </text>
-                            <!-- connector -->
                             <line
                                 x1="650"
                                 y1="438"
@@ -5674,9 +5785,7 @@
                                 stroke-dasharray="3 2"
                             />
 
-                            <!-- ══════════════════════════════════════════
-                         WAYPOINT 3 — ITERATION 3
-                    ══════════════════════════════════════════ -->
+                            <!-- WAYPOINT 3 -->
                             <circle
                                 cx="902"
                                 cy="253"
@@ -5702,8 +5811,6 @@
                                 stroke-width="1"
                                 stroke-dasharray="4 3"
                             />
-
-                            <!-- card — above -->
                             <rect
                                 x="740"
                                 y="50"
@@ -5806,6 +5913,7 @@
                                 stroke="rgba(180,150,70,.1)"
                                 stroke-width=".4"
                             />
+                            <!-- UPDATED: F-09 and F-11 names updated in the map cards too -->
                             <text
                                 x="748"
                                 y="123"
@@ -5813,7 +5921,7 @@
                                 font-size="10.5"
                                 fill="rgba(175,150,95,.7)"
                             >
-                                · F-09 Mark attendance
+                                · F-09 Event Engagement &amp; Attendance
                             </text>
                             <text
                                 x="748"
@@ -5822,7 +5930,7 @@
                                 font-size="10.5"
                                 fill="rgba(175,150,95,.7)"
                             >
-                                · F-11 View saved events
+                                · F-11 Personal Event Collections
                             </text>
                             <text
                                 x="748"
@@ -5869,7 +5977,6 @@
                             >
                                 · Performance polished
                             </text>
-                            <!-- connector -->
                             <line
                                 x1="902"
                                 y1="246"
@@ -5880,10 +5987,7 @@
                                 stroke-dasharray="3 2"
                             />
 
-                            <!-- ══════════════════════════════════════════
-                         FINAL RELEASE STAR
-                    ══════════════════════════════════════════ -->
-                            <!-- outer halo rings -->
+                            <!-- FINAL RELEASE STAR -->
                             <circle
                                 cx="1042"
                                 cy="342"
@@ -5909,7 +6013,6 @@
                                 stroke-width="1"
                                 stroke-dasharray="4 3"
                             />
-                            <!-- star polygon -->
                             <polygon
                                 points="1042,292 1054,330 1094,330 1063,352 1075,390 1042,368 1009,390 1021,352 990,330 1030,330"
                                 fill="rgba(245,200,66,.1)"
@@ -5934,8 +6037,6 @@
                             >
                                 ★
                             </text>
-
-                            <!-- final release card -->
                             <rect
                                 x="870"
                                 y="408"
@@ -5956,7 +6057,6 @@
                                 stroke="rgba(245,200,66,.08)"
                                 stroke-width=".5"
                             />
-                            <!-- gold header -->
                             <rect
                                 x="870"
                                 y="408"
@@ -6091,7 +6191,6 @@
                             >
                                 SHIP PRAY REPEAT · GROUP 6 · 2025
                             </text>
-                            <!-- connector from star to card -->
                             <line
                                 x1="1042"
                                 y1="393"
@@ -6102,7 +6201,7 @@
                                 stroke-dasharray="3 2"
                             />
 
-                            <!-- ── GHOST SHIP mid-ocean ── -->
+                            <!-- GHOST SHIP -->
                             <g
                                 transform="translate(530,490) scale(.6)"
                                 opacity=".18"
@@ -6129,7 +6228,7 @@
                                 />
                             </g>
 
-                            <!-- ── OCEAN LABELS ── -->
+                            <!-- OCEAN LABELS -->
                             <text
                                 x="330"
                                 y="420"
@@ -6179,7 +6278,7 @@
                                 Feature Gulf
                             </text>
 
-                            <!-- ── COMPASS ROSE ── -->
+                            <!-- COMPASS ROSE -->
                             <g transform="translate(115,310)">
                                 <circle
                                     cx="0"
@@ -6213,7 +6312,6 @@
                                     stroke-width=".5"
                                     fill="none"
                                 />
-                                <!-- 16-point ticks -->
                                 <g
                                     stroke="rgba(180,150,70,.22)"
                                     stroke-width=".9"
@@ -6227,7 +6325,6 @@
                                     <line x1="-41" y1="41" x2="-34" y2="34" />
                                     <line x1="-41" y1="-41" x2="-34" y2="-34" />
                                 </g>
-                                <!-- half-ticks -->
                                 <g
                                     stroke="rgba(180,150,70,.12)"
                                     stroke-width=".6"
@@ -6241,17 +6338,14 @@
                                     <line x1="-53" y1="-22" x2="-47" y2="-19" />
                                     <line x1="-22" y1="-53" x2="-19" y2="-47" />
                                 </g>
-                                <!-- N arrow — gold -->
                                 <polygon
                                     points="0,-50 6,-24 0,-20 -6,-24"
                                     fill="rgba(225,190,95,.92)"
                                 />
-                                <!-- S arrow — dim -->
                                 <polygon
                                     points="0,50 6,24 0,20 -6,24"
                                     fill="rgba(105,80,30,.62)"
                                 />
-                                <!-- E W -->
                                 <polygon
                                     points="50,0 24,6 20,0 24,-6"
                                     fill="rgba(210,175,82,.78)"
@@ -6317,7 +6411,7 @@
                                 </text>
                             </g>
 
-                            <!-- ── TITLE CARTOUCHE ── -->
+                            <!-- TITLE CARTOUCHE -->
                             <g transform="translate(28,26)">
                                 <rect
                                     x="0"
@@ -6339,7 +6433,6 @@
                                     stroke="rgba(180,150,70,.07)"
                                     stroke-width=".5"
                                 />
-                                <!-- ornaments -->
                                 <text
                                     x="8"
                                     y="20"
@@ -6399,7 +6492,7 @@
                                     y="24"
                                     text-anchor="middle"
                                     font-family="'Space Mono',monospace"
-                                    font-size="10"
+                                    font-size="20"
                                     fill="rgba(180,150,70,.75)"
                                     letter-spacing=".18em"
                                 >
@@ -6421,22 +6514,10 @@
                                 </text>
                                 <text
                                     x="210"
-                                    y="72"
-                                    text-anchor="middle"
-                                    font-family="'DM Sans',sans-serif"
-                                    font-size="10"
-                                    fill="rgba(175,150,95,.58)"
-                                    letter-spacing=".04em"
-                                >
-                                    Five developers · Four iterations · Eight
-                                    features
-                                </text>
-                                <text
-                                    x="210"
                                     y="90"
                                     text-anchor="middle"
                                     font-family="'Space Mono',monospace"
-                                    font-size="7.5"
+                                    font-size="12"
                                     fill="rgba(155,125,55,.3)"
                                     letter-spacing=".14em"
                                 >
@@ -6444,107 +6525,7 @@
                                 </text>
                             </g>
 
-                            <!-- ── LEGEND ── -->
-                            <g transform="translate(28,630)">
-                                <rect
-                                    x="0"
-                                    y="0"
-                                    width="240"
-                                    height="100"
-                                    rx="5"
-                                    fill="rgba(2,10,20,.8)"
-                                    stroke="rgba(180,150,70,.22)"
-                                    stroke-width=".9"
-                                />
-                                <rect
-                                    x="5"
-                                    y="5"
-                                    width="230"
-                                    height="90"
-                                    rx="3"
-                                    fill="none"
-                                    stroke="rgba(180,150,70,.06)"
-                                    stroke-width=".4"
-                                />
-                                <text
-                                    x="120"
-                                    y="18"
-                                    text-anchor="middle"
-                                    font-family="'Space Mono',monospace"
-                                    font-size="8.5"
-                                    fill="rgba(180,150,70,.48)"
-                                    letter-spacing=".18em"
-                                >
-                                    LEGEND
-                                </text>
-                                <line
-                                    x1="10"
-                                    y1="22"
-                                    x2="230"
-                                    y2="22"
-                                    stroke="rgba(180,150,70,.14)"
-                                    stroke-width=".5"
-                                />
-                                <!-- row 1 -->
-                                <circle
-                                    cx="22"
-                                    cy="40"
-                                    r="6"
-                                    fill="#F5C842"
-                                    opacity=".72"
-                                    filter="url(#subtleglow)"
-                                />
-                                <circle cx="22" cy="40" r="3" fill="#FFFAEC" />
-                                <text
-                                    x="36"
-                                    y="44"
-                                    font-family="'DM Sans',sans-serif"
-                                    font-size="11"
-                                    fill="rgba(175,150,95,.65)"
-                                >
-                                    Iteration waypoint
-                                </text>
-                                <!-- row 2 -->
-                                <line
-                                    x1="10"
-                                    y1="62"
-                                    x2="68"
-                                    y2="62"
-                                    stroke="rgba(245,200,66,.42)"
-                                    stroke-width="3"
-                                    stroke-dasharray="6 3"
-                                />
-                                <text
-                                    x="78"
-                                    y="66"
-                                    font-family="'DM Sans',sans-serif"
-                                    font-size="11"
-                                    fill="rgba(175,150,95,.65)"
-                                >
-                                    Voyage route
-                                </text>
-                                <!-- row 3 -->
-                                <text
-                                    x="18"
-                                    y="87"
-                                    font-family="serif"
-                                    font-size="15"
-                                    fill="rgba(245,200,66,.68)"
-                                >
-                                    ★
-                                </text>
-                                <text
-                                    x="36"
-                                    y="88"
-                                    font-family="'DM Sans',sans-serif"
-                                    font-size="11"
-                                    fill="rgba(175,150,95,.65)"
-                                >
-                                    Final release
-                                </text>
-                            </g>
-
-                            <!-- ── STATS BAR ── -->
+                            <!-- STATS BAR -->
                             <g transform="translate(290,724)">
                                 <rect
                                     x="0"
@@ -6670,7 +6651,6 @@
                                 </text>
                             </g>
 
-                            <!-- bottom credit -->
                             <rect
                                 x="10"
                                 y="758"
@@ -6679,18 +6659,6 @@
                                 rx="0"
                                 fill="rgba(180,150,70,.04)"
                             />
-                            <text
-                                x="600"
-                                y="768"
-                                text-anchor="middle"
-                                font-family="'Space Mono',monospace"
-                                font-size="8.5"
-                                fill="rgba(155,125,55,.22)"
-                                letter-spacing=".22em"
-                            >
-                                CAMPUS SHENANIGANS · GROUP 6 · UNIVERSITY OF
-                                MANITOBA · MMXXV
-                            </text>
                         </g>
                     </svg>
                 </div>
@@ -6702,52 +6670,145 @@
                 </div>
                 <div class="portraits-grid rv">
                     <div class="portrait-card">
-                        <div class="portrait-name">Krisha</div>
-                        <div class="portrait-desc">intro</div>
+                        <div class="portrait-name">Krisha Bhalala</div>
+                        <div class="portrait-desc">
+                            For this project, I created the development roadmap
+                            and broke down features into development tasks for
+                            the team. This was my first experience working with
+                            a shared codebase in a team environment, where I
+                            learned to balance adding new features with
+                            maintaining system stability. I developed the core
+                            backend for authentication and event management
+                            while overseeing the overall structure of the
+                            project. I also led refactoring efforts to improve
+                            code quality and reduce technical debt, ensuring the
+                            system remained organized and maintainable as new
+                            features were introduced. Toward the end of the
+                            project, I designed the landing page and refined the
+                            user interface to deliver a polished and consistent
+                            final product. Through this project, I learned how
+                            crucial teamwork is in delivering a successful
+                            project.
+                        </div>
                         <div class="portrait-sks">
-                            <span class="portrait-sk">Auth</span>
-                            <span class="portrait-sk">UI</span>
+                            <span class="portrait-sk"
+                                >Technical Coordination</span
+                            >
+                            <span class="portrait-sk"
+                                >Backend Architecture</span
+                            >
+                            <span class="portrait-sk">Code Refactoring</span>
+                            <span class="portrait-sk">UI/UX Design</span>
+                        </div>
+                    </div>
+
+                    <div class="portrait-card">
+                        <div class="portrait-name">Simi Adeniyi</div>
+                        <div class="portrait-desc">
+                            This project was a major turning point for me as I
+                            transitioned from working on solo assignments to
+                            collaborating in a professional team environment. I
+                            took ownership of the mark attendance feature and
+                            worked closely on the system's foundational design,
+                            specifically authoring our architecture diagram and
+                            implementing the event factory pattern. A big part
+                            of my role was maintaining our Git hygiene. I
+                            learned to navigate complex merge conflicts and kept
+                            our project moving forward without losing any
+                            progress. I realized that the best results come from
+                            designing code that isn't just functional for the
+                            current sprint but is open for growth in the
+                            iterations to come.
+                        </div>
+                        <div class="portrait-sks">
+                            <span class="portrait-sk">Software Design</span>
+                            <span class="portrait-sk">Git Workflow</span>
+                            <span class="portrait-sk">Design Patterns</span>
+                            <span class="portrait-sk">Feature Development</span>
+                        </div>
+                    </div>
+
+                    <div class="portrait-card">
+                        <div class="portrait-name">Sohvat Saini</div>
+                        <div class="portrait-desc">
+                            I joined this project with a goal to move beyond
+                            solo development and contribute meaningfully to a
+                            shared codebase. I focused on the "inner workings"
+                            of our campus tracker, starting with the login
+                            interface and moving deep into the backend logic for
+                            secure authentication. As our features evolved, I
+                            realized that writing code is only half the job the
+                            other half is making sure it stays maintainable. I
+                            am most proud of the work I did in refactoring by
+                            actively reviewing merge requests and improving
+                            existing code, I was able to enhance our system's
+                            quality while mastering SOLID principles and layered
+                            architecture. Most importantly, I valued our team
+                            dynamic and how we worked together to turn these
+                            technical concepts into a finished product.
+                        </div>
+                        <div class="portrait-sks">
+                            <span class="portrait-sk">Git Collaboration</span>
+                            <span class="portrait-sk">Code Refactoring</span>
+                            <span class="portrait-sk">Backend Logic</span>
+                            <span class="portrait-sk">UI Development</span>
+                            <span class="portrait-sk">SOLID Design</span>
+                        </div>
+                    </div>
+
+                    <div class="portrait-card">
+                        <div class="portrait-name">Swastik Dash</div>
+                        <div class="portrait-desc">
+                            I entered this course wanting to understand how
+                            mobile apps are built from the ground up since I had
+                            never used Android Studio before. I took charge of
+                            the UI and presentation layer, where I used XML to
+                            build out layouts that were both functional and easy
+                            to use. To ensure our app remained stable, I learned
+                            how to write integration and end-to-end tests using
+                            tools like JUnit, Mockito, and Espresso. My proudest
+                            achievement was the bookmark feature, which I
+                            developed independently from the initial design
+                            through to final testing. This experience really
+                            helped me get comfortable with advanced Git
+                            workflows and professional development tools.
+                        </div>
+                        <div class="portrait-sks">
+                            <span class="portrait-sk">UI Design</span>
+                            <span class="portrait-sk">Android Testing</span>
+                            <span class="portrait-sk">XML Layouts</span>
+                            <span class="portrait-sk"
+                                >Feature Implementation</span
+                            >
+                        </div>
+                    </div>
+
+                    <div class="portrait-card">
+                        <div class="portrait-name">Ayden Holgate</div>
+                        <div class="portrait-desc">
+                            Coming into this project with no prior Android
+                            experience, I learned how valuable clear
+                            communication and version control are in a
+                            professional setting. I took responsibility for the
+                            persistence layer, where I set up our SQLite
+                            database and managed the critical transition from
+                            temporary stubs to a real, working database. I also
+                            focused on unit and end-to-end testing to catch bugs
+                            before they reached the user. This project taught me
+                            how beneficial it is to split code into separate
+                            layers like presentation and persistence. I realized
+                            that my technical interests really align with
+                            backend and database work, and I enjoyed the
+                            challenge of making our data storage reliable and
+                            efficient.
+                        </div>
+                        <div class="portrait-sks">
                             <span class="portrait-sk">SQLite</span>
-                        </div>
-                    </div>
-
-                    <div class="portrait-card">
-                        <div class="portrait-name">Simi</div>
-                        <div class="portrait-desc">intro</div>
-                        <div class="portrait-sks">
-                            <span class="portrait-sk">Persistence</span>
-                            <span class="portrait-sk">Architecture</span>
-                            <span class="portrait-sk">Repositories</span>
-                        </div>
-                    </div>
-
-                    <div class="portrait-card">
-                        <div class="portrait-name">Sohvat</div>
-                        <div class="portrait-desc">intro</div>
-                        <div class="portrait-sks">
-                            <span class="portrait-sk">Services</span>
-                            <span class="portrait-sk">Validation</span>
-                            <span class="portrait-sk">EventService</span>
-                        </div>
-                    </div>
-
-                    <div class="portrait-card">
-                        <div class="portrait-name">Swastik</div>
-                        <div class="portrait-desc">intro</div>
-                        <div class="portrait-sks">
-                            <span class="portrait-sk">JUnit</span>
-                            <span class="portrait-sk">Espresso</span>
-                            <span class="portrait-sk">Mockito</span>
-                        </div>
-                    </div>
-
-                    <div class="portrait-card">
-                        <div class="portrait-name">Ayden</div>
-                        <div class="portrait-desc">intro</div>
-                        <div class="portrait-sks">
-                            <span class="portrait-sk">Fragments</span>
-                            <span class="portrait-sk">ViewModel</span>
-                            <span class="portrait-sk">Activities</span>
+                            <span class="portrait-sk">Database Management</span>
+                            <span class="portrait-sk">Unit Testing</span>
+                            <span class="portrait-sk"
+                                >Layered Architecture</span
+                            >
                         </div>
                     </div>
                 </div>
